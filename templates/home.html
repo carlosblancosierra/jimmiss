@@ -6,11 +6,25 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container mt-4 mb-5">
     <div class="row">
-        <div class="col red">
-            <h1>Home</h1>
+        {% for obj in categories %}
+        <div class="col s12 m4 mt-4">
+            <div class="">
+                <img src="{{ obj.pic }}" alt="" class="responsive-img"/>
+                <div class="center bg-dblue p-4">
+                    <h2 class="white-text">{{ obj.title }}</h2>
+                    {% for btn in obj.buttons %}
+                    <a class="waves-effect waves-light btn-large {{ btn.class }} mt-3 btn-home" href="{{ btn.link }}">
+                        {{ btn.text }}
+                        <br>
+                        <img src="{{ btn.logo }}" alt="" class="" width="30px"/>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

@@ -1,5 +1,23 @@
 {% load static %}
 
 {% url 'home' as home_url %}
+{% url 'cart' as cart_url %}
+{% url 'nosotros' as nosotros_url %}
 
-nav
+<nav class="navbar bg-blue">
+    <div class="container">
+        <div class="nav-wrapper black-text">
+            <a href="{{ home_url }}" class="brand-logo">
+                <img src="{% static 'images/logo.png' %}" class="responsive-img" width="130px" alt="">
+            </a>
+            <a href="#" data-target="slide-out" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{{ home_url }}">INICIO</a></li>
+                <li><a href="{{ home_url }}">CATÁLOGO</a></li>
+                <li><a href="{{ nosotros_url }}">NOSOTROS</a></li>
+                <li><a href="{{ home_url }}">CONTACTO</a></li>
+                <li><a href="{{ cart_url }}">REALIZAR PEDIDO</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

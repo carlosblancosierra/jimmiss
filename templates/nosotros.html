@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head_title %} {% endblock %}
+
+{% block content %}
+
+<div class="container grey mt-5">
+    <div class="row">
+        <div class="col s12 py-5">
+            <h1 class="center white-text">Nosotros</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col s12 text-blue">
+            <h2>Fabrilmalla de México, SA de CV</h2>
+            <p>Fue creada por una Empresa Española con origen en Iqualada Provincia de Barcelona y un Grupo de
+                Inversionistas Mexicanos en el año de 1968, fabricando y comercializando prendas de tejido de punto bajo
+                las marcas "Jim" Y "Miss</p>
+
+            <p>Las prendas (de tejido de punto), han sido: ropa interior, ropa de dormir, traies de baño
+                Intantiled) sueteres (intantiles), V conjuntos sport intantiles).</p>
+
+            <h3>Productos:</h3>
+            <ol>
+                <li>Rona interior nara hehes niños niñas v rahallero</li>
+                <li>Rona interior nara hehes niños niñas v rahallero</li>
+                <li>Rona interior nara hehes niños niñas v rahallero</li>
+                <li>Rona interior nara hehes niños niñas v rahallero</li>
+            </ol>
+
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col s12">
+            <h2 class="center">Nuestras Marcas:</h2>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col s6 m3 offset-m3">
+            <img src="{% static 'images/nosotros/jimmiss-bebe.png' %}" alt="" class="responsive-img">
+        </div>
+        <div class="col s6 m3">
+            <img src="{% static 'images/nosotros/jim.png' %}" alt="" class="responsive-img">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col s6 m3 offset-m3">
+            <img src="{% static 'images/nosotros/miss.png' %}" alt="" class="responsive-img">
+        </div>
+        <div class="col s6 m3">
+            <img src="{% static 'images/nosotros/blu-mont.png' %}" alt="" class="responsive-img">
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

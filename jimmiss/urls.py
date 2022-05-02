@@ -21,10 +21,13 @@ from . import views
 
 urlpatterns = [
     path('', views.home_page, name='home'),
+    path('nosotros', views.nosotros_page, name='nosotros'),
+    path('cart', views.cart_page, name='cart'),
+    path('producto', views.product_page, name='producto'),
 
+    path('division/caballero', views.division_page, name='caballero'),
     path('admin/', admin.site.urls),
 ]
-
 
 if settings.STATIC_LOCAL:
     # test mode

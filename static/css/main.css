@@ -10,24 +10,249 @@ a {
     color: unset;
 }
 
-p {
-    font-size:1.5rem;
+h1, h2{
+    margin:0rem!important;
 }
 
-@media only screen and (min-width: 993px) {
-.container {
-    max-width: 90%!important;
-    width: 90%!important;
-}
+
+
+
+.font-070 {
+    font-size: 0.7rem!important;
+    line-height:0.8rem!important;
 }
 
-@media only screen and (min-width: 1920px) {
-.container {
-    max-width: 7obje0%!important;
-    width: 70%!important;
+.font-080 {
+    font-size: 0.8rem!important;
+    line-height:0.9rem!important;
 }
+
+.font-090 {
+    font-size: 0.9rem!important;
+    line-height:1rem!important;
 }
+
+.font-100 {
+    font-size: 1rem!important;
+    line-height:1.1rem!important;
+}
+
+.font-110 {
+    font-size: 1.1rem!important;
+    line-height:1.2rem!important;
+}
+
+
+.font-125 {
+    font-size: 1.25rem!important;
+    line-height:1.5rem!important;
+}
+
+.font-150 {
+    font-size: 1.5rem!important;
+    line-height:2rem!important;
+}
+
+.font-175 {
+    font-size: 1.75rem!important;
+    line-height:2rem!important;
+}
+
+.font-200 {
+    font-size: 2rem!important;
+    line-height:2.5rem!important;
+}
+
+.font-225 {
+    font-size: 2.25rem!important;
+    line-height:2.75rem!important;
+}
+
+.font-250 {
+    font-size: 2.5rem!important;
+    line-height:3rem!important;
+}
+
+.font-300 {
+    font-size: 3rem!important;
+    line-height:3.5rem!important;
+}
+
+.font-350 {
+    font-size: 3.5rem!important;
+    line-height:4rem!important;
+}
+
+.font-400 {
+    font-size: 4rem!important;
+    line-height:4.5rem!important;
+}
+
+.font-450 {
+    font-size: 4.5rem!important;
+    line-height:5rem!important;
+}
+
+.font-500 {
+    font-size: 5rem!important;
+    line-height:5.5rem!important;
+}
+
+.font-weight-600 {
+    font-weight: 600;
+}
+
 
 :root {
-  --gold: #d4bd8b;
+
+  --blue: #173B4D;
+  --dblue: #0B1E26;
+  --red: #D8262F;
+  --blue2: #093C4B;
+  --lblue: #4B868F;
+  --lblue2: #9FCCDE;
+
+}
+
+.bg-blue {
+    background-color:var(--blue);
+}
+
+.bg-dblue {
+    background-color:var(--dblue);
+}
+
+.bg-red {
+    background-color:var(--red);
+}
+
+.bg-blue2 {
+    background-color:var(--blue2);
+}
+
+.bg-lblue {
+    background-color:var(--lblue);
+}
+
+.bg-lblue2 {
+    background-color:var(--lblue2);
+}
+
+.text-blue {
+    color:var(--blue);
+}
+
+.text-dblue {
+    color:var(--dblue);
+}
+
+.text-red {
+    color:var(--red);
+}
+
+.text-blue2 {
+    color:var(--blue2);
+}
+
+.text-lblue {
+    color:var(--lblue);
+}
+
+.text-lblue2 {
+    color:var(--lblue2);
+}
+
+
+.btn-home {
+    border-radius:30px!important;
+    height: auto;
+    line-height: 1.2rem;
+    font-size: 15px;
+    padding: 7px 28px;
+    text-transform: none;
+    font-weight:bold;
+}
+
+/* DIVISION */
+
+.division-product-info {
+    text-align: center;
+}
+
+.division-product-title {
+    font-size:1.2rem;
+    font-weight:bold;
+}
+
+.division-product-iva {
+    margin-top:0;
+    font-size:1.2rem;
+    margin-bottom:0;
+    line-height: 1.1rem;
+
+}
+
+.division-product-costo {
+    font-weight:bold;
+    margin-top: 0.5rem;
+    font-size:1.2rem;
+    margin-bottom:0;
+
+}
+
+.division-product-pvps {
+    margin-top:0;
+    font-weight:bold;
+    font-size:1.2rem;
+    line-height: 1rem;
+    color:var(--blue);
+}
+
+
+/* Cart */
+
+.cart-card {
+   border-radius:10px;
+}
+
+
+/* Product */
+
+.product-talla-square {
+    border: solid;
+    width: 100%;
+    padding: 0.2rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color:gray;
+    font-weight:bold;
+}
+
+.product-qty-square {
+    border: solid 1px black!important;
+    text-align: center;
+    border-radius:10px!important;
+    height: 2.5rem!important;
+}
+
+.product-qty-square:focus {
+    border: solid 2px var(--blue)!important;
+    text-align: center;
+    border-radius:10px!important;
+    height: 2.5rem!important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+
+   opacity: 1;
+
+}
+.owl-dot {
+    background:none!important;
+    border:1px solid white!important;
+}
+
+.owl-dot:focus {
+    border:1px solid var(--lblue)!important;
 }
