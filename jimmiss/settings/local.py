@@ -16,7 +16,7 @@ import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-sy8p#c=-qa6^i8r@wojlqofq=@8rt0fod@^5lb@eh8co8mxcvc
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-STATIC_LOCAL = True
+STATIC_LOCAL = False
 
 ALLOWED_HOSTS = ['jimmiss.herokuapp.com', '127.0.0.1']
 
@@ -41,6 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'colores',
+    'composiciones',
+    'divisiones',
+    'jimmiss',
+    'marcas',
+    'series',
+    'skus',
+    'tallas',
+
 ]
 
 MIDDLEWARE = [
