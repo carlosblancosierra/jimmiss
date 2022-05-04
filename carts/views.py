@@ -8,8 +8,14 @@ def home_page(request):
     cart_id = request.session.get("cart_id", None)
     entries = CartEntry.objects.filter(cart__id=cart_id)
 
+    total = 0
+    for entry in entries:
+        subtotal = entry.sku_product.master.costo * entry.quantity
+        total += subtotal
+
     context = {
         "entries": entries,
+        "total": total,
     }
 
     return render(request, "carts/home.html", context)

@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="col s12 m3">
-                    <p class="font-weight-bold text-right w-100 font-125">${{ obj.sku_product.master.precio }} </p>
+                    <p class="font-weight-bold text-right w-100 font-125">${{ obj.sku_product.master.costo }} </p>
                     <p class="right my-0">Cantidad: {{ obj.quantity }} <br>
                         <a class="cart-qty-link" href="{{ obj.sku_product.master.get_absolute_url }}">Modificar</a>
                     </p>
@@ -66,7 +66,7 @@
                         <p>Subtotal:</p>
                     </div>
                     <div class="col s6">
-                        <p class="text-right">$2000.00</p>
+                        <p class="text-right">${{ total }}</p>
                     </div>
                 </div>
                 <div class="row font-weight-bold">
@@ -74,7 +74,7 @@
                         <p class="">Total:</p>
                     </div>
                     <div class="col s6">
-                        <p class="text-right">$2000.00</p>
+                        <p class="text-right">${{ total }}</p>
                     </div>
                 </div>
             </div>
