@@ -55,7 +55,7 @@ class SkuProduct(models.Model):
     # seo_title = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return (self.master.sku + self.color.sku_sufix + self.talla.sku_sufix)
+        return self.master.sku + self.color.sku_sufix + self.talla.sku_sufix
 
     def get_absolute_url(self):
         return f"/skus/{self.master.slug}"
@@ -64,4 +64,4 @@ class SkuProduct(models.Model):
         ordering = ["color", "talla"]
 
     def sku(self):
-        return (self.master.sku + self.color.sku_sufix + self.talla.sku_sufix)
+        return self.master.sku + self.color.sku_sufix + self.talla.sku_sufix

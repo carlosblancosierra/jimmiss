@@ -27,6 +27,7 @@ urlpatterns = [
 
     path('division/caballero', views.division_page, name='caballero'),
     path('skus/', include('skus.urls')),
+    path('carrito/', include('carts.urls')),
 
     path('admin/', admin.site.urls),
 ]
