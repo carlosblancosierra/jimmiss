@@ -6,5 +6,5 @@ app_name = 'skus'
 
 urlpatterns = [
 
-    path('<str:slug>', views.detail_page),
+    path('<str:slug>', views.detail_page, name="detail"),
 ]

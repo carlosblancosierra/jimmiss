@@ -5,6 +5,7 @@
 {% block head_title %} {% endblock %}
 
 {% block content %}
+{% url 'carts:delete-entry' as delete_entry_url %}
 
 <div class="container my-5">
     <div class="row">
@@ -26,18 +27,29 @@
                 </div>
 
                 <div class="col s12 m6">
-                    <p>{{ obj.sku_product.master.descripcion }} /
-                        {{ obj.sku_product.color }} /
-                        {{ obj.sku_product.talla }}</p>
+                    <p>
+                        <a href="{{ obj.sku_product.master.get_absolute_url }}">
+                            {{ obj.sku_product.master.descripcion }} /
+                            {{ obj.sku_product.color }} /
+                            {{ obj.sku_product.talla }}
+                        </a>
+                    </p>
                 </div>
 
                 <div class="col s12 m3">
-                    <p class="font-weight-bold text-right w-100">${{ obj.precio }}.00 </p>
-                    <p class="right">+ 2 -</p>
+                    <p class="font-weight-bold text-right w-100 font-125">${{ obj.sku_product.master.precio }} </p>
+                    <p class="right my-0">Cantidad: {{ obj.quantity }} <br>
+                        <a class="cart-qty-link" href="{{ obj.sku_product.master.get_absolute_url }}">Modificar</a>
+                    </p>
                 </div>
 
                 <div class="col s12 m1">
-                    <p class="center"><a href="#" class="text-dblue font-weight-bold">X</a></p>
+                    <form method="POST" action="{{ delete_entry_url}} "> {% csrf_token %}
+                        <p class="center">
+                            <button type="submit" class="text-dblue font-weight-bold">X</button>
+                        </p>
+                        <input type="hidden" name="delete-entry-sku" value="{{ obj.sku_product.sku }}">
+                    </form>
                 </div>
 
             </div>

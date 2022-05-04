@@ -1,4 +1,7 @@
 from django.db import models
+from django.db.models.signals import pre_save
+from django.urls import reverse
+
 from marcas.models import Marca
 from divisiones.models import Division
 from series.models import Serie
@@ -15,6 +18,9 @@ class SkuMaster(models.Model):
     slug = models.SlugField(unique=True, blank=True, max_length=255)
     costo = models.DecimalField(decimal_places=2, max_digits=20, blank=True, null=True)
     precio = models.DecimalField(decimal_places=2, max_digits=20, blank=True, null=True)
+
+    def get_absolute_url(self):
+        return reverse("skus:detail", kwargs={"slug": self.slug})
 
     def __str__(self):
         return self.descripcion
@@ -43,6 +49,8 @@ class SkuProduct(models.Model):
                               on_delete=models.SET_NULL,
                               related_name='talla_skuproduct_set')
 
+    sku = models.CharField(max_length=120, unique=True, blank=True, null=True)
+
     draft = models.BooleanField(default=False)
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -63,5 +71,21 @@ class SkuProduct(models.Model):
     class Meta:
         ordering = ["color", "talla"]
 
-    def sku(self):
-        return self.master.sku + self.color.sku_sufix + self.talla.sku_sufix
+    # def sku(self):
+    #     return self.master.sku + self.color.sku_sufix + self.talla.sku_sufix
+
+
+# def pre_save_post_receiver(sender, instance, *args, **kwargs):
+#     if not instance.slug:
+#         instance.slug = create_slug(instance)
+#
+#
+# pre_save.connect(pre_save_post_receiver, sender=BlogPost)
+
+def pre_save_sku_product_receiver(sender, instance, *args, **kwargs):
+    print(instance.sku)
+    if instance.sku is None:
+        instance.sku = instance.master.sku + instance.color.sku_sufix + instance.talla.sku_sufix
+
+
+pre_save.connect(pre_save_sku_product_receiver, sender=SkuProduct)

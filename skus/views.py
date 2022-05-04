@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404
+from carts.models import CartEntry
+
 from . import models
 
 
@@ -7,6 +9,12 @@ def detail_page(request, slug):
     sku_master = get_object_or_404(models.SkuMaster, slug=slug)
 
     sku_products = models.SkuProduct.objects.filter(master=sku_master)
+
+    cart_id = request.session.get("cart_id", None)
+    entrys = CartEntry.objects.filter(cart__id=cart_id)
+    cart_btn_text = 'Agregar al carrito'
+    if len(entrys) > 0:
+        cart_btn_text = 'Actualizar carrito'
 
     # group colors
     colores = []
@@ -19,7 +27,12 @@ def detail_page(request, slug):
         color_skus = []
         for sku_product in sku_products:
             if sku_product.color == color:
-                color_skus.append(sku_product)
+                quantity = 0
+                entry = entrys.filter(sku_product=sku_product)
+                if len(entry) == 1:
+                    quantity = entry.first().quantity
+                sku_product_dict = {'sku': sku_product, 'quantity': quantity}
+                color_skus.append(sku_product_dict)
         products[color.title] = color_skus
 
     print(products)
@@ -27,6 +40,7 @@ def detail_page(request, slug):
     context = {
         "obj": sku_master,
         "products": products,
+        "cart_btn_text": cart_btn_text,
     }
 
     return render(request, "skus/detail.html", context)

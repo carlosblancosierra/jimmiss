@@ -1,5 +1,9 @@
 from django.db import models
 from django.conf import settings
+from django.contrib import messages
+from django.shortcuts import redirect
+from django.core.exceptions import MultipleObjectsReturned
+
 from skus.models import SkuProduct
 
 User = settings.AUTH_USER_MODEL
@@ -29,7 +33,7 @@ class CartsManager(models.Manager):
     def new(self, user=None):
         user_obj = None
         if user is not None:
-            if user.is_authenticated():
+            if user.is_authenticated:
                 user_obj = user
 
         return self.model.objects.create(user=user_obj)
@@ -52,7 +56,37 @@ class Cart(models.Model):
 class CartEntryManager(models.Manager):
     def new(self, request, sku_product, quantity):
         cart_obj, new_cart = Cart.objects.new_or_get(request)
-        return self.model.objects.create(sku_product=sku_product, cart=cart_obj, quantity=quantity)
+        if quantity and int(quantity) > 0:
+            return self.model.objects.create(sku_product=sku_product, cart=cart_obj, quantity=quantity)
+
+    def new_or_update(self, request, sku_product_id, quantity):
+
+        if sku_product_id is not None:
+            try:
+                sku_product = SkuProduct.objects.get(sku=sku_product_id)
+
+            except SkuProduct.DoesNotExist:
+                messages.error(request, "Error de producto")
+                return redirect("carts:home")
+
+        cart, created = Cart.objects.new_or_get(request)
+
+        cart_entry = self.filter(cart=cart).filter(sku_product=sku_product)
+
+        if cart_entry.count() == 1:
+            entry = cart_entry.first()
+            if int(quantity) > 0:
+                entry.quantity = quantity
+                entry.save()
+
+            elif int(quantity) == 0:
+                entry.delete()
+
+        elif cart_entry.count() > 1:
+            raise MultipleObjectsReturned
+
+        else:
+            entry = self.new(request, sku_product=sku_product, quantity=quantity)
 
 
 class CartEntry(models.Model):

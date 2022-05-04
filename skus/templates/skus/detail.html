@@ -6,6 +6,8 @@
 
 {% block content %}
 
+{% url 'carts:add' as add_to_cart_url %}
+
 <div class="container my-5">
     <div class="row">
         <div class="col s12 m5">
@@ -17,8 +19,6 @@
                 </div>
                 {% endfor %}
             </div>
-
-
             <ul id='carousel-custom-dots' class='owl-dots'>
                 {% for i in repeat %}
                 <button role="button" class="owl-dot active">
@@ -37,37 +37,43 @@
             <p class="grey-text font-150 font-weight-bold my-0">${{ obj.precio }}</p>
             <p class="grey-text mt-0">(IVA incluido)</p>
 
-            {% for key, values in products.items %}
-            <p class="text-dblue font-weight-bold font-150">COLOR</p>
-            <svg width="40px" height="40px">
-                <circle cx="20px" cy="20px" r="15px" stroke="black" stroke-width="1" fill="{{ values.0.color.hex }}"/>
-            </svg>
-            <p>{{ key }}</p>
 
-            <p class="text-dblue font-weight-bold mt-3 font-150 mb-0">TALLA</p>
+            <form method="POST" action="{{ add_to_cart_url }}"> {% csrf_token %}
+                {% for key, values in products.items %}
+                <p class="text-dblue font-weight-bold font-150">COLOR</p>
+                <svg width="40px" height="40px">
+                    <circle cx="20px" cy="20px" r="15px" stroke="black" stroke-width="1"
+                            fill="{{ values.0.color.hex }}"/>
+                </svg>
+                <p>{{ key }}</p>
 
-            <div class="row">
-                {% for v in values %}
-                <div class="col s2 px-1">
-                    <p class="product-talla-square">{{ v.talla.short }}</p>
+                <p class="text-dblue font-weight-bold mt-3 font-150 mb-0">TALLA</p>
+
+                <div class="row">
+                    {% for v in values %}
+                    <div class="col s2 px-1">
+                        <p class="product-talla-square">{{ v.sku.talla.short }}</p>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            </div>
-            <div class="row">
-                {% for v in values %}
-                <div class="col s2 px-1">
-                    <input type="number" placeholder="0" class="product-qty-square" name="{{ v.sku }}">
+                <div class="row">
+                    {% for v in values %}
+                    <div class="col s2 px-1">
+                        <input type="number" class="product-qty-square" name="{{ v.sku }}"
+                               value="{{ v.quantity }}"
+                        >
+                    </div>
+                    {% endfor %}
                 </div>
+
+                <p class="mt-0 font-weight-bold grey-text">Cantidad a elegir</p>
+
                 {% endfor %}
 
-            </div>
-
-            <p class="mt-0 font-weight-bold grey-text">Cantidad a elegir</p>
-
-            {% endfor %}
-
-            <a class="waves-effect waves-light btn bg-blue w-100 f text-capitalize">Agregar al carrito</a>
-
+                <button type="submit" class="waves-effect waves-light btn bg-blue w-100 f text-capitalize">
+                    {{ cart_btn_text }}
+                </button>
+            </form>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Cart, CartEntry
 
 
@@ -14,16 +14,22 @@ def home_page(request):
 
     return render(request, "carts/home.html", context)
 
-# def agregar_page(request):
-#     product_id = request.POST.get('cart_entry_product', None)
-#     quantity = request.POST.get('cart_entry_quantity', None)
-#
-#     print("product_id", product_id)
-#     print("quantity", quantity)
-#
-#     cart_entry = CartEntry.objects.add_multiple(request, product_id=product_id, quantity=quantity)
-#     print(cart_entry)
-#
-#     CartShipment.objects.update_entries(cart_entry=cart_entry)
-#
-#     return redirect("carts:home")
+
+def agregar_page(request):
+    form = request.POST
+    if form:
+        for sku_product, quantity in form.items():
+            if sku_product == "csrfmiddlewaretoken":
+                continue
+            CartEntry.objects.new_or_update(request, sku_product, quantity)
+
+    return redirect("carts:home")
+
+
+def delete_entry_page(request):
+    form = request.POST
+    if form:
+        sku_product = form['delete-entry-sku']
+        CartEntry.objects.new_or_update(request, sku_product, 0)
+
+    return redirect("carts:home")

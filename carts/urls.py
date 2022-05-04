@@ -6,5 +6,7 @@ app_name = 'carts'
 
 urlpatterns = [
     path('', views.home_page, name="home"),
-    # path('agregar', views.agregar_page),
+    path('agregar', views.agregar_page, name="add"),
+    path('borrar', views.delete_entry_page, name="delete-entry"),
+
 ]
