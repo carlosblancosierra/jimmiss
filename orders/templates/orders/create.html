@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head_title %} {% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col s12">
+            <h1 class="text-lblue">Crear orden</h1>
+            <div class="span bg-lblue py-1"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <form method="POST" action=""> {% csrf_token %}
+
+            <div class="col s12 m6 px-5">
+                <p class="font-200 text-lblue">Dirección de Entrega</p>
+
+                <div class="input-field">
+                    <input id="nombre_completo" type="text" class="" name="nombre_completo">
+                    <label for="nombre_completo">Nombre Completo</label>
+                </div>
+
+                <div class="input-field">
+                    <input id="calle_numero" type="text" class="" name="calle_numero">
+                    <label for="calle_numero">Calle, número ext e int</label>
+                </div>
+
+                <div class="input-field">
+                    <input id="telefono" type="text" class="" name="telefono">
+                    <label for="telefono">Número de teléfono</label>
+                </div>
+
+                <div class="input-field">
+                    <input id="codigo_postal" type="text" class="" name="codigo_postal">
+                    <label for="codigo_postal">Código postal</label>
+                </div>
+
+                <div class="input-field">
+                    <input id="estado" type="text" class="" name="estado">
+                    <label for="estado">Estado/Provincia/Región</label>
+                </div>
+
+                <div class="input-field">
+                    <input id="ciudad" type="text" class="" name="ciudad">
+                    <label for="ciudad">Ciudad</label>
+                </div>
+
+                <div class="input-field">
+                    <input id="colonia" type="text" class="" name="colonia">
+                    <label for="colonia">Colonia</label>
+                </div>
+
+                <div class="input-field">
+                    <input id="pais" type="text" class="" value="México" name="pais">
+                    <label for="pais">País</label>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <p class="font-200 text-lblue">Resumen del pedido</p>
+
+                {% for obj in entries %}
+                <div class="row card py-2 d-flex valign-wrapper cart-card">
+
+                    <div class="col s12 m2">
+                        <img src="{% static 'images/playera-placeholder.jpg' %}" alt="" class="responsive-img">
+                    </div>
+
+                    <div class="col s12 m6">
+                        <p>
+                            <a href="{{ obj.sku_product.master.get_absolute_url }}">
+                                {{ obj.sku_product.master.descripcion }} /
+                                {{ obj.sku_product.color }} /
+                                {{ obj.sku_product.talla }}
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="col s12 m3">
+                        <p class="font-weight-bold text-right w-100 font-125">${{ obj.sku_product.master.costo }} </p>
+                        <p class="right my-0">Cantidad: {{ obj.quantity }} <br>
+                        </p>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+                <p class="text-right">Total:</p>
+                <p class="text-right">${{ total }}</p>
+
+                <button type="submit" class="waves-effect waves-light btn bg-blue w-100 f text-capitalize">
+                    Crear Pedido
+                </button>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Entries -->
+<!-- list -->
+<!-- Totals -->
+<!-- Shipping Address -->
+<!-- Add or Select -->
+<!-- Contacto-->
+
+{% endblock %}
