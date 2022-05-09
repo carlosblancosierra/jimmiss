@@ -5,7 +5,7 @@ from . import views
 app_name = 'orders'
 
 urlpatterns = [
-    path('create', views.create_page, name="create"),
+    path('direccion', views.address_page, name="address"),
     # path('confirm', views.delete_entry_page, name="delete-entry"),
 
 ]

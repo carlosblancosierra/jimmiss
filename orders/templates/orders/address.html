@@ -9,7 +9,7 @@
 <div class="container my-5">
     <div class="row">
         <div class="col s12">
-            <h1 class="text-lblue">Crear orden</h1>
+            <h1 class="text-lblue">Dirección de Entrega</h1>
             <div class="span bg-lblue py-1"></div>
         </div>
     </div>
@@ -18,10 +18,11 @@
 <div class="container">
 
     <div class="row">
-        <form method="POST" action=""> {% csrf_token %}
 
-            <div class="col s12 m6 px-5">
-                <p class="font-200 text-lblue">Dirección de Entrega</p>
+        <div class="col s12 m6 px-4">
+            <form method="POST" action=""> {% csrf_token %}
+
+                <h4 class="text-lblue">Dirección nueva</h4>
 
                 <div class="input-field">
                     <input id="nombre_completo" type="text" class="" name="nombre_completo">
@@ -62,45 +63,40 @@
                     <input id="pais" type="text" class="" value="México" name="pais">
                     <label for="pais">País</label>
                 </div>
-            </div>
-            <div class="col s12 m6">
-                <p class="font-200 text-lblue">Resumen del pedido</p>
-
-                {% for obj in entries %}
-                <div class="row card py-2 d-flex valign-wrapper cart-card">
-
-                    <div class="col s12 m2">
-                        <img src="{% static 'images/playera-placeholder.jpg' %}" alt="" class="responsive-img">
-                    </div>
-
-                    <div class="col s12 m6">
-                        <p>
-                            <a href="{{ obj.sku_product.master.get_absolute_url }}">
-                                {{ obj.sku_product.master.descripcion }} /
-                                {{ obj.sku_product.color }} /
-                                {{ obj.sku_product.talla }}
-                            </a>
-                        </p>
-                    </div>
-
-                    <div class="col s12 m3">
-                        <p class="font-weight-bold text-right w-100 font-125">${{ obj.sku_product.master.costo }} </p>
-                        <p class="right my-0">Cantidad: {{ obj.quantity }} <br>
-                        </p>
-                    </div>
-                </div>
-
-                {% endfor %}
-
-                <p class="text-right">Total:</p>
-                <p class="text-right">${{ total }}</p>
 
                 <button type="submit" class="waves-effect waves-light btn bg-blue w-100 f text-capitalize">
-                    Crear Pedido
+                    Crear dirección
                 </button>
+            </form>
 
+        </div>
+        <div class="col s12 m6 px-4">
+            <h4 class="text-lblue">Direcciónes guardadas</h4>
+            <div class="row">
+                {% for address in addresses %}
+                <form method="POST" action=""> {% csrf_token %}
+                    <div class="col s12 m6">
+                        <div class="card p-3">
+                            <p class="m-0 p-0"><strong>Nombre:</strong> {{ address.nombre_completo }}</p>
+                            <p class="m-0 p-0"><strong>Calle:</strong> {{ address.calle_numero }}</p>
+                            <p class="m-0 p-0"><strong>Teléfono:</strong> {{ address.telefono }}</p>
+                            <p class="m-0 p-0"><strong>Código Postal:</strong> {{ address.codigo_postal }}</p>
+                            <p class="m-0 p-0"><strong>Estado:</strong> {{ address.estado }}</p>
+                            <p class="m-0 p-0"><strong>Ciudad:</strong> {{ address.ciudad }}</p>
+                            <p class="m-0 p-0"><strong>Colonia:</strong> {{ address.colonia }}</p>
+                            <p class="m-0 p-0"><strong>País:</strong> {{ address.pais }}</p>
+                            <input type="hidden" name="address_id" value="{{ address.id }}">
+                            <button type="submit"
+                                    class="waves-effect waves-light btn bg-blue w-100 f text-capitalize mt-3">
+                                Usar dirección
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                {% endfor %}
             </div>
-        </form>
+
+        </div>
     </div>
 </div>
 
