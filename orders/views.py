@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from carts.models import Cart, CartEntry
 from addresses.models import Address
 
@@ -67,6 +67,54 @@ def address_page(request):
 
             request.session['address_id'] = address.id
 
-        print(request.session.get('address_id'))
+        return redirect('orders:confirm')
 
     return render(request, "orders/address.html", context)
+
+
+def confirm_page(request):
+    cart_id = request.session.get("cart_id", None)
+    address_id = request.session.get("address_id", None)
+    entries = CartEntry.objects.filter(cart__id=cart_id)
+
+    total = 0
+    for entry in entries:
+        subtotal = entry.sku_product.master.costo * entry.quantity
+        total += subtotal
+
+    address_qs = Address.objects.filter(id=address_id)
+    if len(address_qs) == 1:
+        address = address_qs.first()
+
+    form = request.POST
+
+    context = {
+        "address": address,
+        "entries": entries,
+        "total": total,
+    }
+
+    return render(request, "orders/confirm.html", context)
+
+
+def created_page(request):
+    cart_id = request.session.get("cart_id", None)
+    address_id = request.session.get("address_id", None)
+    entries = CartEntry.objects.filter(cart__id=cart_id)
+
+    total = 0
+    for entry in entries:
+        subtotal = entry.sku_product.master.costo * entry.quantity
+        total += subtotal
+
+    address_qs = Address.objects.filter(id=address_id)
+    if len(address_qs) == 1:
+        address = address_qs.first()
+
+    context = {
+        "address": address,
+        "entries": entries,
+        "total": total,
+    }
+
+    return render(request, "orders/confirm.html", context)

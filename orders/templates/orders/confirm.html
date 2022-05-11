@@ -5,21 +5,26 @@
 {% block head_title %} {% endblock %}
 
 {% block content %}
-{% url 'carts:delete-entry' as delete_entry_url %}
+
 {% url 'orders:address' as order_address_url %}
+
 
 <div class="container my-5">
     <div class="row">
         <div class="col s12">
-            <h1 class="text-lblue">Mi Carrito font-200</h1>
+            <h1 class="text-lblue font-200">Confirmar Orden</h1>
             <div class="span bg-lblue py-1"></div>
         </div>
     </div>
 </div>
 
 <div class="container">
+
     <div class="row">
-        <div class="col s12 m8">
+
+        <div class="col s12 m6 px-4">
+            <h4 class="text-lblue">Pedido</h4>
+
             {% for obj in entries %}
             <div class="row card py-2 d-flex valign-wrapper cart-card">
 
@@ -40,57 +45,61 @@
                 <div class="col s12 m3">
                     <p class="font-weight-bold text-right w-100 font-125">${{ obj.sku_product.master.costo }} </p>
                     <p class="right my-0">Cantidad: {{ obj.quantity }} <br>
-                        <a class="cart-qty-link" href="{{ obj.sku_product.master.get_absolute_url }}">Modificar</a>
+                        <a class="cart-qty-link" href="{{ order_address_url }}">Modificar</a>
                     </p>
                 </div>
 
                 <div class="col s12 m1">
-                    <form method="POST" action="{{ delete_entry_url}} "> {% csrf_token %}
-                        <p class="center">
-                            <button type="submit" class="text-dblue font-weight-bold">X</button>
-                        </p>
-                        <input type="hidden" name="delete-entry-sku" value="{{ obj.sku_product.sku }}">
-                    </form>
                 </div>
 
             </div>
 
             {% endfor %}
         </div>
+        <div class="col s12 m6 px-4">
+            <h4 class="text-lblue">Dirección de envío</h4>
 
-        <div class="col s12 m4">
             <div class="card cart-card p-3">
-                <p class="">Resumen</p>
-                <hr/>
-                <div class="row mt-3">
+                <p class="m-0 p-0">{{ address.nombre_completo }}, {{ address.telefono }}</p>
+                <p class="m-0 p-0">
+                    {{ address.calle_numero }},
+                    {{ address.estado }},
+                    {{ address.ciudad }},
+                    {{ address.colonia }},
+                    {{ address.pais }},
+                    {{ address.codigo_postal }}.
+                </p>
+                <a class="cart-qty-link" href="{{ obj.sku_product.master.get_absolute_url }}">Modificar</a>
+
+            </div>
+
+            <h4 class="text-lblue mt-4">Resumen</h4>
+
+            <div class="card cart-card px-5">
+                <div class="row">
                     <div class="col s6">
-                        <p>Subtotal:</p>
+                        <p class="font-150 mb-2">Subtotal:</p>
                     </div>
                     <div class="col s6">
-                        <p class="text-right">${{ total }}</p>
+                        <p class="text-right font-150 mb-2">${{ total }}</p>
                     </div>
                 </div>
                 <div class="row font-weight-bold">
                     <div class="col s6">
-                        <p class="">Total:</p>
+                        <p class="font-150 mt-2">Total:</p>
                     </div>
                     <div class="col s6">
-                        <p class="text-right">${{ total }}</p>
+                        <p class="text-right font-150 mt-2">${{ total }}</p>
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col s12">
-                    <a href="{{ order_address_url }}"
-                       class="waves-effect waves-light btn bg-blue w-100 f text-capitalize">
-                        Realizar Pedido
-                    </a>
-                </div>
-            </div>
+            <form> {% csrf_token %}
+                <button class="waves-effect waves-light btn-large bg-blue w-100 text-capitalize font-150">
+                    Confirmar Pedido
+                </button>
+            </form>
         </div>
     </div>
 </div>
-
 
 {% endblock %}
