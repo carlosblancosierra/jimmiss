@@ -13,7 +13,10 @@ def home_page(request):
         subtotal = entry.sku_product.master.costo * entry.quantity
         total += subtotal
 
+    empty = len(entries) == 0
+
     context = {
+        "empty": empty,
         "entries": entries,
         "total": total,
     }
