@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'accounts',
     'addresses',
     'carts',
     'colores',
@@ -55,6 +56,11 @@ INSTALLED_APPS = [
     'tallas',
 
 ]
+
+LOGIN_URL = '/login'
+LOGIN_URL_REDIRECT = '/'
+LOGOUT_URL = '/logout'
+LOGOUT_REDIRECT_URL = '/login'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

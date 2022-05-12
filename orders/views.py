@@ -7,6 +7,9 @@ from .models import Order
 
 # Create your views here.
 def address_page(request):
+    if not request.user.is_authenticated:
+        return redirect('/login?next=/orders/address')
+
     cart_id = request.session.get("cart_id", None)
     entries = CartEntry.objects.filter(cart__id=cart_id)
     user = request.user
