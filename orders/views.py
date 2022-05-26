@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from carts.models import Cart, CartEntry
 from addresses.models import Address
+from django.contrib.admin.views.decorators import staff_member_required
 
 from .models import Order
 
@@ -127,6 +128,7 @@ def created_page(request):
     return render(request, "orders/created.html", context)
 
 
+@staff_member_required
 def staff_list_page(request):
     order_qs = Order.objects.all()
 
