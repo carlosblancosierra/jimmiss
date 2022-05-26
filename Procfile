@@ -1,1 +1,1 @@
-web: gunicorn jimmiss.wsgi
+web: gunicorn mvp_landing.wsgi
