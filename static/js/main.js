@@ -13,6 +13,4 @@ $(document).ready(function() {
         dotsContainer: '#carousel-custom-dots'
     })
 
-
-
 });
