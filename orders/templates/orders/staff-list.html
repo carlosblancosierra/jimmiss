@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head_title %} {% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col s12">
+            <h1 class="text-lblue font-200">Ordenes</h1>
+            <div class="span bg-lblue py-1"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    {% for order in orders %}
+    <div class="row card">
+        <div class="col s2">
+            <p>{{ order.timestamp }}</p>
+        </div>
+        <div class="col s2">
+            <p>{{ order.user }}</p>
+        </div>
+        <div class="col s2">
+            <p>{{ order.status }}</p>
+        </div>
+        <div class="col s4">
+            <p>{{ order.direccion_entrega }}</p>
+        </div>
+        <div class="col s1">
+            <p>${{ order.total }}</p>
+        </div>
+        <div class="col s1">
+            <a class="btn bg-lblue mt-2">Ver</a>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

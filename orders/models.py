@@ -24,6 +24,8 @@ class Order(models.Model):
     status = models.CharField(max_length=120, blank=True, default="INICIADA", choices=STATUS_CHOICES)
     total = models.DecimalField(decimal_places=2, max_digits=20, blank=True, null=True)
     cart_entries = models.ManyToManyField(CartEntry, blank=True)
+    updated = models.DateTimeField(auto_now=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         if self.order_id:

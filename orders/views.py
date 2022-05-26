@@ -125,3 +125,13 @@ def created_page(request):
     }
 
     return render(request, "orders/created.html", context)
+
+
+def staff_list_page(request):
+    order_qs = Order.objects.all()
+
+    context = {
+        "orders": order_qs,
+    }
+
+    return render(request, "orders/staff-list.html", context)
