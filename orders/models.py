@@ -33,6 +33,9 @@ class Order(models.Model):
         else:
             return self.id
 
+    class Meta:
+        ordering = ['-order_id']
+
     def subtotal(self):
         subtotal = 0
         for entry in self.cart_entries.all():

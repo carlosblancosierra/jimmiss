@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head_title %}{{ title }} | {{ block.super }}{% endblock %}
+
+{% block content %}
+
+{% url 'orders:staff-list' as orders_staff_list_url %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col s12">
+            <h1 class="text-lblue font-200">Panel de control</h1>
+            <div class="span bg-lblue py-1"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col s12 m3">
+            <div class="collection">
+                <a href="#!" class="collection-item">Ordenes</a>
+                <a href="#!" class="collection-item">Usuarios</a>
+                <a href="#!" class="collection-item">Productos</a>
+                <a href="#!" class="collection-item">Categorias</a>
+            </div>
+        </div>
+        <div class="col s12 m9">
+            <div class="col s12 m12">
+                <h3>Ultimas ordenes</h3>
+                <div class="collection">
+                    {% for order in orders %}
+
+                    <a href="{{ order.get_staff_url }}" class="collection-item">
+                        <div class="row">
+                            <div class="col s2">
+                                <p>{{ order.order_id }}</p>
+                            </div>
+                            <div class="col s4">
+                                <p>{{ order.timestamp }}</p>
+                            </div>
+                            <div class="col s2">
+                                <p>{{ order.user }}</p>
+                            </div>
+                            <div class="col s2">
+                                <p>{{ order.status }}</p>
+                            </div>
+                            <div class="col s1">
+                                <p>${{ order.total }}</p>
+                            </div>
+                        </div>
+
+                    </a>
+                    {% endfor %}
+
+                </div>
+
+
+                <p><a href="{{ orders_staff_list_url }}" class="btn bg-blue right">Ver Todas</a></p>
+            </div>
+
+            <div class="col s12 m12">
+                <h3>Usuarios</h3>
+
+                <div class="collection">
+                    {% for user in users %}
+                    <a href="{{ order.get_staff_url }}" class="collection-item">
+                        {{ user }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col s12 m12">
+                <h3>Productos</h3>
+
+                <div class="collection">
+                    {% for skumaster in skumasters %}
+                    <a href="{{ order.get_staff_url }}" class="collection-item">
+                        {{ skumaster.descripcion }}
+                        {{ skumaster.sku }}
+                        {{ skumaster.precio }}
+                        {{ skumaster.costo }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+             <div class="col s12 m12">
+                <h3>Marcas</h3>
+
+                <div class="collection">
+                    {% for marca in marcas %}
+                    <a href="{{ order.get_staff_url }}" class="collection-item">
+                        {{ marca }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}
