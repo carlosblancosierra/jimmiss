@@ -43,6 +43,9 @@ class Order(models.Model):
     def total(self):
         return self.subtotal()
 
+    def get_staff_url(self):
+        return f"/orders/staff/{self.order_id}"
+
 
 def post_save_order_receiver(sender, instance, *args, **kwargs):
     if not instance.order_id:

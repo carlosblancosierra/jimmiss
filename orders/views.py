@@ -137,3 +137,19 @@ def staff_list_page(request):
     }
 
     return render(request, "orders/staff-list.html", context)
+
+
+@staff_member_required
+def staff_detail_page(request, order_id):
+    order = None
+    order_qs = Order.objects.filter(order_id=order_id)
+    if len(order_qs) == 1:
+        order = order_qs.first()
+
+    context = {
+        "order": order,
+        "address": order.direccion_entrega,
+        "entries": order.cart_entries.all,
+    }
+
+    return render(request, "orders/staff-detail.html", context)
