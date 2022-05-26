@@ -157,4 +157,4 @@ MEDIA_URL = '/media/'  # django-storages
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-from jimmiss.aws.conf import *
+# from jimmiss.aws.conf import *
