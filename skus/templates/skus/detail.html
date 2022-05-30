@@ -12,17 +12,16 @@
     <div class="row">
         <div class="col s12 m5">
             <div class="owl-carousel owl-theme">
-                {% for i in repeat %}
+                {% for pic in pictures %}
                 <div class="item">
-                    <img src="{% static 'images/playera-placeholder.jpg' %}" alt=""
-                         class="responsive-img">
+                    <img src="{{ pic.url }}" alt="" class="responsive-img">
                 </div>
                 {% endfor %}
             </div>
             <ul id='carousel-custom-dots' class='owl-dots'>
-                {% for i in repeat %}
+                {% for pic in pictures %}
                 <button role="button" class="owl-dot active">
-                    <img src="{% static 'images/playera-placeholder.jpg' %}" alt=""
+                    <img src="{{ pic.url }}" alt=""
                          class="responsive-img" width="50px">
                 </button>
                 {% endfor %}

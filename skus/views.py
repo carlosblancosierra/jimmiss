@@ -36,12 +36,23 @@ def detail_page(request, slug):
                 color_skus.append(sku_product_dict)
         products[color.title] = color_skus
 
-    print(products)
+    pictures = []
+    if sku_master.image:
+        pictures.append(sku_master.image)
+    if sku_master.image_2:
+        pictures.append(sku_master.image_2)
+    if sku_master.image_3:
+        pictures.append(sku_master.image_3)
+    if sku_master.image_4:
+        pictures.append(sku_master.image_3)
+    if sku_master.image_5:
+        pictures.append(sku_master.image_3)
 
     context = {
         "obj": sku_master,
         "products": products,
         "cart_btn_text": cart_btn_text,
+        "pictures": pictures
     }
 
     return render(request, "skus/detail.html", context)
