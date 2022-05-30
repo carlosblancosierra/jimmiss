@@ -1,9 +1,6 @@
 from django.db import models
 from django.db.models.signals import pre_save
 from django.urls import reverse
-from imagekit.models import ProcessedImageField
-from imagekit.processors import ResizeToFill
-from imagekit.models import ImageSpecField
 
 from marcas.models import Marca
 from divisiones.models import Division
@@ -14,9 +11,6 @@ from tallas.models import Talla
 
 
 # Create your models here.
-def upload_location(instance, filename):
-    return "sku-masters-img/%s/%s" % (instance.sku, filename)
-
 
 class SkuMaster(models.Model):
     sku = models.CharField(max_length=120, unique=True)
@@ -36,31 +30,6 @@ class SkuMaster(models.Model):
     composicion = models.ForeignKey(Composicion, blank=True, null=True,
                                     on_delete=models.SET_NULL,
                                     related_name='composicion_skuproduct_set')
-
-    image = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                processors=[ResizeToFill(700, 700)],
-                                format='JPEG',
-                                options={'quality': 90})
-    image_small = ImageSpecField(source='image',
-                                 processors=[ResizeToFill(400, 400)],
-                                 format='JPEG',
-                                 options={'quality': 90})
-    image_2 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(700, 700)],
-                                  format='JPEG',
-                                  options={'quality': 90})
-    image_3 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(700, 700)],
-                                  format='JPEG',
-                                  options={'quality': 90})
-    image_4 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(700, 700)],
-                                  format='JPEG',
-                                  options={'quality': 90})
-    image_5 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(700, 700)],
-                                  format='JPEG',
-                                  options={'quality': 90})
 
     class Meta:
         ordering = ["sku"]

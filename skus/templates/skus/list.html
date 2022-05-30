@@ -23,12 +23,7 @@
         <a href="{{ obj.get_absolute_url }}">
             <div class="col s12 m3 mt-1">
                 <div class="card p-3">
-                    {% if obj.image %}
-                    <img src="{{ obj.image.url }}" alt="" class="responsive-img"/>
-                    {% else %}
                     <img src="{% static 'images/playera-placeholder.jpg' %}" alt="" class="responsive-img"/>
-                    {% endif %}
-
                     <div class="division-product-info">
                         <p class="division-product-iva">{{ obj.marca }}</p>
                         <h2 class="division-product-title">{{ obj.descripcion }}</h2>
