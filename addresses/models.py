@@ -17,7 +17,7 @@ class Address(models.Model):
     user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.user.username + " : " + self.nombre_completo + " " + self.calle_numero)
+        return str(self.nombre_completo + " " + self.calle_numero)
 
     # def get_address(self):
     #     return "{line1} {line2} {city} {state}, {postal} {country}".format(
@@ -28,3 +28,6 @@ class Address(models.Model):
     #         postal=self.postal_code,
     #         country=self.country,
     #     )
+
+    def get_absolute_url(self):
+        return f"/addresses/{self.id}"
