@@ -6,8 +6,11 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 
 from orders.models import Order
+from addresses.models import Address
+
 from skus.models import SkuMaster, SkuProduct
 from marcas.models import Marca
+from .models import UserDetails
 
 User = settings.AUTH_USER_MODEL
 
@@ -56,3 +59,24 @@ def staff_home_page(request):
 
     }
     return render(request, "accounts/staff-home.html", context)
+
+
+def home_page(request):
+    user = request.user
+
+    orders = Order.objects.filter(user=user)
+    addresses = Address.objects.filter(user=user)
+
+    user_details = None
+    user_details_qs = UserDetails.objects.filter(user=user)
+    if len(user_details_qs) == 1:
+        user_details = user_details_qs.first()
+
+    context = {
+        "orders": orders,
+        "addresses": addresses,
+        "user": user,
+        "user_details": user_details,
+
+    }
+    return render(request, "accounts/home.html", context)

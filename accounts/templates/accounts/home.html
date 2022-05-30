@@ -4,62 +4,100 @@
 {% block head_title %}{{ title }} | {{ block.super }}{% endblock %}
 
 {% block content %}
-{% url 'password_change' as password_change_url %}
-{% url 'password_reset' as password_reset_url %}
 
-<div class="container-fluid  ">
-    <div class="container py-5">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="text-white">Mi cuenta</h1>
-            </div>
+{% url 'orders:staff-list' as orders_staff_list_url %}
+{% url 'orders:list' as orders_list_url %}
+{% url 'address:list' as address_list_url %}
+
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col s12">
+            <h1 class="text-lblue font-200">Panel de control</h1>
+            <div class="span bg-lblue py-1"></div>
         </div>
     </div>
 </div>
 
-<div class="container">
-    <div class="row my-5">
+<div class="container mt-5">
+    <div class="row">
 
-        <div class="col-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Datos de la cuenta</h5>
-                    <div class='list-group'>
-                        <p>Email:</p>
-                        <p class='list-group-item'>{{ request.user.email }}</p>
+        <div class="col s12 m3">
+            <div class="card px-3 py-2">
+                <h3 class="font-150 mt-0 py-0">Detalles de la cuenta</h3>
+                <p><strong>Usuario:</strong> {{ user.username }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Nombre Completo:</strong> {{ user_details.full_name }}</p>
+                <p><strong>Nombre Comercial:</strong> {{ user_details.nombre_comercial }}</p>
+                <p><strong>Razón Social:</strong> {{ user_details.razon_social }}</p>
+                <p><strong>Teléfono:</strong> {{ user_details.telefono }}</p>
+                <a href="#" class="">Actualizar</a>
+            </div>
 
-                    </div>
+<!--            <div class="collection">-->
+<!--                <a href="#!" class="collection-item">Ordenes</a>-->
+<!--                <a href="#!" class="collection-item">Direcciones</a>-->
+<!--                <a href="#!" class="collection-item">Detalles de la cuenta</a>-->
+<!--                <a href="#!" class="collection-item">Cambiar Contraseña</a>-->
+
+<!--            </div>-->
+        </div>
+        <div class="col s12 m9">
+            <div class="col s12 m12">
+                <h3>Ultimas ordenes</h3>
+                <div class="collection">
+                    {% for order in orders %}
+
+                    <a href="{{ order.get_absolute_url }}" class="collection-item">
+                        <div class="row">
+                            <div class="col s2">
+                                <p>{{ order.order_id }}</p>
+                            </div>
+                            <div class="col s4">
+                                <p>{{ order.timestamp }}</p>
+                            </div>
+                            <div class="col s2">
+                                <p>{{ order.user }}</p>
+                            </div>
+                            <div class="col s2">
+                                <p>{{ order.status }}</p>
+                            </div>
+                            <div class="col s1">
+                                <p>${{ order.total }}</p>
+                            </div>
+                        </div>
+
+                    </a>
+                    {% endfor %}
+
                 </div>
+                <p><a href="{{ orders_list_url }}" class="btn bg-blue right">Ver Todas</a></p>
+            </div>
+            <div class="col s12 m12">
+                <h3>Direcciones</h3>
+                <div class="collection">
+                    {% for address in addresses %}
+                    <a href="{{ address.get_absolute_url }}" class="collection-item">
+                        <p class="m-0 p-0">Nombre: {{ address.nombre_completo }}</p>
+                        <p class="m-0 p-0">Dirección:
+                            {{ address.calle_numero }},
+                            {{ address.estado }},
+                            {{ address.ciudad }},
+                            {{ address.colonia }},
+                            {{ address.pais }},
+                            {{ address.codigo_postal }}.
+                            {{ address.telefono }}
+                        </p>
+                    </a>
+                    {% endfor %}
+                </div>
+                <p><a href="{{ address_list_url }}" class="btn bg-blue right">Ver Todas</a></p>
+
             </div>
         </div>
-
-
-        <div class="col-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Ayuda</h5>
-                    <div class='list-group'>
-                        <a class='list-group-item' href='{{ password_change_url }}'>Cambiar Contraseña</a>
-                        <a class='list-group-item' href='{{ password_reset_url }}'>Olvide mi Contraseña</a>
-                        <a class='list-group-item' href='{% url "logout" %}'>Cerrar sesión</a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">asd</h5>
-                    <div class='list-group'>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 
     </div>
 </div>
+
 
 {% endblock %}
