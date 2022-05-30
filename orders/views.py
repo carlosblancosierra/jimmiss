@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from carts.models import Cart, CartEntry
 from addresses.models import Address
 from django.contrib.admin.views.decorators import staff_member_required
+from django.http import HttpResponseForbidden
 
 from .models import Order
 
@@ -153,3 +154,32 @@ def staff_detail_page(request, order_id):
     }
 
     return render(request, "orders/staff-detail.html", context)
+
+
+def detail_page(request, order_id):
+    order = None
+    order_qs = Order.objects.filter(order_id=order_id)
+
+    if len(order_qs) == 1:
+        order = order_qs.first()
+
+    if order.user != request.user:
+        return HttpResponseForbidden()
+
+    context = {
+        "order": order,
+        "address": order.direccion_entrega,
+        "entries": order.cart_entries.all,
+    }
+
+    return render(request, "orders/detail.html", context)
+
+
+def list_page(request):
+    order_qs = Order.objects.filter(user=request.user)
+
+    context = {
+        "orders": order_qs,
+    }
+
+    return render(request, "orders/list.html", context)

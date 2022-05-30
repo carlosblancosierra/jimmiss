@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head_title %} {% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col s12">
+            <h1 class="text-lblue font-200">Ordenes</h1>
+            <div class="span bg-lblue py-1"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="collection">
+        <a class="collection-item">
+            <div class="row">
+                <div class="col s1">
+                    <p>ID</p>
+                </div>
+                <div class="col s3">
+                    <p>Fecha</p>
+                </div>
+                <div class="col s2">
+                    <p>Estatus</p>
+                </div>
+                <div class="col s4">
+                    <p>Dirección</p>
+                </div>
+                <div class="col s1">
+                    <p>Total</p>
+                </div>
+            </div>
+        </a>
+
+        {% for order in orders %}
+        <a href="{{ order.get_staff_url }}" class="collection-item">
+            <div class="row">
+                <div class="col s1">
+                    <p>{{ order.order_id }}</p>
+                </div>
+                <div class="col s3">
+                    <p>{{ order.timestamp }}</p>
+                </div>
+                <div class="col s2">
+                    <p>{{ order.status }}</p>
+                </div>
+                <div class="col s4">
+                    <p>{{ order.direccion_entrega }}</p>
+                </div>
+                <div class="col s1">
+                    <p>${{ order.total }}</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+
+</div>
+
+{% endblock %}

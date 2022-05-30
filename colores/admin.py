@@ -1,5 +1,14 @@
 from django.contrib import admin
 from . import models
 
+
 # Register your models here.
-admin.site.register(models.Color)
+
+class ColorModelAdmin(admin.ModelAdmin):
+    list_display = ["title", "sku_sufix", "hex"]
+
+    class Meta:
+        model = models.Color
+
+
+admin.site.register(models.Color, ColorModelAdmin)

@@ -17,30 +17,65 @@ COLORES = [
 ]
 
 TALLAS = [
-    {"TITLE": "CHICA", "SKU_SUFIX": "CH", "SHORT": "Ch", "ORDER": 0},
-    {"TITLE": "MEDIANA", "SKU_SUFIX": "ME", "SHORT": "Md", "ORDER": 1},
-    {"TITLE": "GRANDE", "SKU_SUFIX": "GR", "SHORT": "G", "ORDER": 2},
-    {"TITLE": "EXTRA GRANDE", "SKU_SUFIX": "EG", "SHORT": "XG", "ORDER": 3},
 
     {"TITLE": "RECIEN NACIDO", "SKU_SUFIX": "1P", "SHORT": "RECIEN NACIDO", "ORDER": 0},
 
-    {"TITLE": "0 MESES", "SKU_SUFIX": "00", "SHORT": "0 Meses", "ORDER": 0},
-    {"TITLE": "1 MES", "SKU_SUFIX": "01", "SHORT": "1 Mes", "ORDER": 0},
-    {"TITLE": "3 MESES", "SKU_SUFIX": "03", "SHORT": "3 Meses", "ORDER": 1},
-    {"TITLE": "6 MESES", "SKU_SUFIX": "06", "SHORT": "6 Meses", "ORDER": 2},
-    {"TITLE": "12 MESES", "SKU_SUFIX": "12", "SHORT": "12 Meses", "ORDER": 3},
-    {"TITLE": "18 MESES", "SKU_SUFIX": "18", "SHORT": "18 Meses", "ORDER": 4},
+    {"TITLE": "CHICA", "SKU_SUFIX": "CH", "SHORT": "Ch", "ORDER": 100},
+    {"TITLE": "MEDIANA", "SKU_SUFIX": "ME", "SHORT": "Md", "ORDER": 101},
+    {"TITLE": "GRANDE", "SKU_SUFIX": "GR", "SHORT": "G", "ORDER": 102},
+    {"TITLE": "EXTRA GRANDE", "SKU_SUFIX": "EG", "SHORT": "XG", "ORDER": 103},
 
-    {"TITLE": "1 AÑO", "SKU_SUFIX": "01", "SHORT": "1 Año", "ORDER": 0},
-    {"TITLE": "2 AÑOS", "SKU_SUFIX": "02", "SHORT": "2 Años", "ORDER": 0},
-    {"TITLE": "3 AÑOS", "SKU_SUFIX": "03", "SHORT": "3 Años", "ORDER": 0},
-    {"TITLE": "4 AÑOS", "SKU_SUFIX": "04", "SHORT": "4 Años", "ORDER": 0},
-    {"TITLE": "6 AÑOS", "SKU_SUFIX": "06", "SHORT": "6 Años", "ORDER": 0},
-    {"TITLE": "8 AÑOS", "SKU_SUFIX": "08", "SHORT": "8 Años", "ORDER": 0},
-    {"TITLE": "10 AÑOS", "SKU_SUFIX": "10", "SHORT": "10 Años", "ORDER": 0},
-    {"TITLE": "12 AÑOS", "SKU_SUFIX": "12", "SHORT": "12 Años", "ORDER": 0},
-    {"TITLE": "14 AÑOS", "SKU_SUFIX": "14", "SHORT": "14 Años", "ORDER": 0},
+    {"TITLE": "0 MESES", "SKU_SUFIX": "00", "SHORT": "0 Meses", "ORDER": 200},
+    {"TITLE": "1 MES", "SKU_SUFIX": "01", "SHORT": "1 Mes", "ORDER": 201},
+    {"TITLE": "3 MESES", "SKU_SUFIX": "03", "SHORT": "3 Meses", "ORDER": 203},
+    {"TITLE": "6 MESES", "SKU_SUFIX": "06", "SHORT": "6 Meses", "ORDER": 206},
+    {"TITLE": "12 MESES", "SKU_SUFIX": "12", "SHORT": "12 Meses", "ORDER": 212},
+    {"TITLE": "18 MESES", "SKU_SUFIX": "18", "SHORT": "18 Meses", "ORDER": 218},
+
+    {"TITLE": "1 AÑO", "SKU_SUFIX": "01", "SHORT": "1 Año", "ORDER": 301},
+    {"TITLE": "2 AÑOS", "SKU_SUFIX": "02", "SHORT": "2 Años", "ORDER": 302},
+    {"TITLE": "3 AÑOS", "SKU_SUFIX": "03", "SHORT": "3 Años", "ORDER": 303},
+    {"TITLE": "4 AÑOS", "SKU_SUFIX": "04", "SHORT": "4 Años", "ORDER": 304},
+    {"TITLE": "6 AÑOS", "SKU_SUFIX": "06", "SHORT": "6 Años", "ORDER": 306},
+    {"TITLE": "8 AÑOS", "SKU_SUFIX": "08", "SHORT": "8 Años", "ORDER": 308},
+    {"TITLE": "10 AÑOS", "SKU_SUFIX": "10", "SHORT": "10 Años", "ORDER": 310},
+    {"TITLE": "12 AÑOS", "SKU_SUFIX": "12", "SHORT": "12 Años", "ORDER": 312},
+    {"TITLE": "14 AÑOS", "SKU_SUFIX": "14", "SHORT": "14 Años", "ORDER": 314},
 ]
+
+SKU_TEST = {
+    "909501": {
+        "MARCA": "JIM",
+        "DIVISION": "CABALLERO",
+        "DESCRIPCION": "CAMISETA TIRANTES",
+        "SERIE": "JIM ACTIVE",
+        "COMPOSICION": "100% ALGODON",
+        "COSTO": 81,
+        "PRECIO": 135,
+        "COLORES": {
+            "BLANCO": {
+                "TALLAS": ["CHICA", "MEDIANA", "GRANDE", "EXTRA GRANDE"]
+            },
+        }
+    },
+    "909801": {
+        "MARCA": "JIM",
+        "DIVISION": "CABALLERO",
+        "DESCRIPCION": 'CAMISETA "V" M/C',
+        "SERIE": "JIM ACTIVE",
+        "COMPOSICION": "CHIFON LIKRA",
+        "COSTO": 119.40,
+        "PRECIO": 199,
+        "COLORES": {
+            "BLANCO": {
+                "TALLAS": ["CHICA", "MEDIANA", "GRANDE", "EXTRA GRANDE"]
+            },
+            "MARINO": {
+                "TALLAS": ["CHICA", "MEDIANA", "GRANDE", "EXTRA GRANDE"]
+            }
+        }
+    }
+}
 
 SKU = {
     "909501": {

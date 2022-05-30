@@ -49,6 +49,9 @@ class Order(models.Model):
     def get_staff_url(self):
         return f"/orders/staff/{self.order_id}"
 
+    def get_absolute_url(self):
+        return f"/orders/{self.order_id}"
+
 
 def post_save_order_receiver(sender, instance, *args, **kwargs):
     if not instance.order_id:
