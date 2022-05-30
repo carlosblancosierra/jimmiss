@@ -21,7 +21,7 @@ def home_page(request):
             "title": 'Dama',
             "buttons": [
                 {
-                    "text": "Pijamas",
+                    "text": "Pronto",
                     "link": "#",
                     "class": "bg-red",
                     "logo": static('images/jimm-logo.png')
@@ -32,15 +32,15 @@ def home_page(request):
             "pic": static('images/dama.jpg'),
             "title": 'Caballero',
             "buttons": [
-                {
-                    "text": "Pijamas",
-                    "link": "/division/caballero",
-                    "class": "bg-blue",
-                    "logo": static('images/jimm-logo.png')
-                },
+                # {
+                #     "text": "Pijamas",
+                #     "link": "/division/caballero",
+                #     "class": "bg-blue",
+                #     "logo": static('images/jimm-logo.png')
+                # },
                 {
                     "text": "Ropa Interior",
-                    "link": "/division/caballero",
+                    "link": "/skus/caballero?cat=ropa_interior",
                     "class": "bg-blue",
                     "logo": static('images/jimm-logo.png')
                 }
@@ -50,14 +50,14 @@ def home_page(request):
             "pic": static('images/dama.jpg'),
             "title": 'Niña',
             "buttons": [
-                {
-                    "text": "Pijamas",
-                    "link": "#",
-                    "class": "bg-red",
-                    "logo": static('images/jimm-logo.png')
-                },
+                # {
+                #     "text": "Pijamas",
+                #     "link": "#",
+                #     "class": "bg-red",
+                #     "logo": static('images/jimm-logo.png')
+                # },
                 {"text": "Ropa Interior",
-                 "link": "#",
+                 "link": "/skus/niñas?cat=ropa_interior",
                  "class": "bg-red",
                  "logo": static('images/jimm-logo.png')
                  },
@@ -67,14 +67,16 @@ def home_page(request):
             "pic": static('images/dama.jpg'),
             "title": 'Niño',
             "buttons": [
-                {"text": "Pijamas",
-                 "link": "#",
-                 "class": "bg-blue",
-                 "logo": static('images/jimm-logo.png')
-                 },
+                # {"text": "Pijamas",
+                #  "link": "#",
+                #  "class": "bg-blue",
+                #  "logo": static('images/jimm-logo.png')
+                #  },
                 {"text": "Ropa Interior",
-                 "link": "#",
-                 "class": "bg-blue"}
+                 "link": "/skus/niños?cat=ropa_interior",
+                 "class": "bg-blue",
+                 "logo": static('images/jimm-logo.png'),
+                 }
                 ,
             ]
         },
@@ -82,14 +84,14 @@ def home_page(request):
             "pic": static('images/dama.jpg'),
             "title": 'Preescolar',
             "buttons": [
-                {"text": "Pijamas",
-                 "link": "#",
-                 "class": "bg-lblue",
-                 "logo": static('images/jimm-logo.png')
-                 },
+                # {"text": "Pijamas",
+                #  "link": "#",
+                #  "class": "bg-lblue",
+                #  "logo": static('images/jimm-logo.png')
+                #  },
                 {
                     "text": "Ropa Interior",
-                    "link": "#",
+                    "link": "/skus/preescolar?cat=ropa_interior",
                     "class": "bg-lblue",
                     "logo": static('images/jimm-logo.png')
                 },
@@ -100,40 +102,40 @@ def home_page(request):
             "pic": static('images/dama.jpg'),
             "title": 'Bebé',
             "buttons": [
-                {"text": "Pijamas",
-                 "link": "#",
-                 "class": "bg-lblue",
-                 "logo": static('images/jimm-logo.png')
-                 },
+                # {"text": "Pijamas",
+                #  "link": "#",
+                #  "class": "bg-lblue",
+                #  "logo": static('images/jimm-logo.png')
+                #  },
                 {
                     "text": "Ropa Interior",
-                    "link": "#",
+                    "link": "/skus/bebe?cat=ropa_interior",
                     "class": "bg-lblue",
                     "logo": static('images/jimm-logo.png')
                 },
-                {
-                    "text": "Accesorios",
-                    "link": "#",
-                    "class": "bg-lblue",
-                    "logo": static('images/jimm-logo.png')
-                },
-                {"text": "Pijamas",
-                 "link": "#",
-                 "class": "bg-lblue2",
-                 "logo": static('images/jimm-logo.png')
-                 },
+                # {
+                #     "text": "Accesorios",
+                #     "link": "#",
+                #     "class": "bg-lblue",
+                #     "logo": static('images/jimm-logo.png')
+                # },
+                # {"text": "Pijamas",
+                #  "link": "#",
+                #  "class": "bg-lblue2",
+                #  "logo": static('images/jimm-logo.png')
+                #  },
                 {
                     "text": "Ropa Interior",
-                    "link": "#",
+                    "link": "/skus/bebe?cat=ropa_interior",
                     "class": "bg-lblue2",
                     "logo": static('images/jimm-logo.png')
                 },
-                {
-                    "text": "Accesorios",
-                    "link": "#",
-                    "class": "bg-lblue2",
-                    "logo": static('images/jimm-logo.png')
-                },
+                # {
+                #     "text": "Accesorios",
+                #     "link": "#",
+                #     "class": "bg-lblue2",
+                #     "logo": static('images/jimm-logo.png')
+                # },
             ]
         },
 

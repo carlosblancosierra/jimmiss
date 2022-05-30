@@ -17,8 +17,10 @@
                     {% for btn in obj.buttons %}
                     <a class="waves-effect waves-light btn-large {{ btn.class }} mt-3 btn-home" href="{{ btn.link }}">
                         {{ btn.text }}
+                        {% if btn.logo %}
                         <br>
                         <img src="{{ btn.logo }}" alt="" class="" width="30px"/>
+                        {% endif %}
                     </a>
                     {% endfor %}
                 </div>

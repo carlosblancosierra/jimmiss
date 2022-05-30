@@ -59,52 +59,58 @@ def list_page(request):
 def dama_page(request):
     masters = SkuMaster.objects.filter(division__code='dama')
     context = {
+        "title": 'Dama',
         "masters": masters,
     }
 
-    return render(request, "skus/dama.html", context)
+    return render(request, "skus/list.html", context)
 
 
 def caballero_page(request):
     masters = SkuMaster.objects.filter(division__code='caballero')
     context = {
+        "title": 'Caballero',
         "masters": masters,
     }
 
-    return render(request, "skus/caballero.html", context)
+    return render(request, "skus/list.html", context)
 
 
 def ninas_page(request):
     masters = SkuMaster.objects.filter(division__code='ninas')
     context = {
+        "title": 'Niñas',
         "masters": masters,
     }
 
-    return render(request, "skus/ninas.html", context)
+    return render(request, "skus/list.html", context)
 
 
 def ninos_page(request):
     masters = SkuMaster.objects.filter(division__code='ninos')
     context = {
+        "title": 'Niños',
         "masters": masters,
     }
 
-    return render(request, "skus/ninos.html", context)
+    return render(request, "skus/list.html", context)
 
 
 def preescolar_page(request):
     masters = SkuMaster.objects.filter(division__code='preescolar')
     context = {
+        "title": 'Preescolar',
         "masters": masters,
     }
 
-    return render(request, "skus/preescolar.html", context)
+    return render(request, "skus/list.html", context)
 
 
 def bebe_page(request):
-    masters = SkuMaster.objects.filter(division__code='bebes')
+    masters = SkuMaster.objects.filter(division__code='bebe')
     context = {
+        "title": 'Bebe',
         "masters": masters,
     }
 
-    return render(request, "skus/bebes.html", context)
+    return render(request, "skus/list.html", context)

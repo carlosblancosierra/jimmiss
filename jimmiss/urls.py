@@ -26,12 +26,7 @@ urlpatterns = [
     path('nosotros', views.nosotros_page, name='nosotros'),
     path('cart', views.cart_page, name='cart'),
     path('producto', views.product_page, name='producto'),
-    path('data', views.data_page, name='data'),
-    path('create_tags', views.create_tags_page, name='create_tags'),
-    path('sku_products', views.sku_products_page, name='sku_products'),
 
-
-    path('division/caballero', views.division_page, name='caballero'),
     path('skus/', include('skus.urls')),
     path('carrito/', include('carts.urls')),
     path('orders/', include('orders.urls')),
@@ -43,6 +38,10 @@ urlpatterns = [
     path('register-local', register_page_local, name="register-local"),
 
     path('admin/', admin.site.urls),
+
+    path('create_masters', views.data_page, name='data'),
+    path('create_tags', views.create_tags_page, name='create_tags'),
+    path('create_products', views.sku_products_page, name='sku_products'),
 ]
 
 if settings.STATIC_LOCAL:
