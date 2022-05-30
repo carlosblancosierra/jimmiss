@@ -1,14 +1,15 @@
 from django.shortcuts import render, get_object_or_404
 from carts.models import CartEntry
 
-from . import models
+from divisiones.models import Division
+from .models import SkuMaster, SkuProduct
 
 
 # Create your views here.
 def detail_page(request, slug):
-    sku_master = get_object_or_404(models.SkuMaster, slug=slug)
+    sku_master = get_object_or_404(SkuMaster, slug=slug)
 
-    sku_products = models.SkuProduct.objects.filter(master=sku_master)
+    sku_products = SkuProduct.objects.filter(master=sku_master)
 
     cart_id = request.session.get("cart_id", None)
     entrys = CartEntry.objects.filter(cart__id=cart_id)
@@ -44,3 +45,66 @@ def detail_page(request, slug):
     }
 
     return render(request, "skus/detail.html", context)
+
+
+def list_page(request):
+    masters = SkuMaster.objects.all()
+    context = {
+        "masters": masters,
+    }
+
+    return render(request, "skus/list.html", context)
+
+
+def dama_page(request):
+    masters = SkuMaster.objects.filter(division__code='dama')
+    context = {
+        "masters": masters,
+    }
+
+    return render(request, "skus/dama.html", context)
+
+
+def caballero_page(request):
+    masters = SkuMaster.objects.filter(division__code='caballero')
+    context = {
+        "masters": masters,
+    }
+
+    return render(request, "skus/caballero.html", context)
+
+
+def ninas_page(request):
+    masters = SkuMaster.objects.filter(division__code='ninas')
+    context = {
+        "masters": masters,
+    }
+
+    return render(request, "skus/ninas.html", context)
+
+
+def ninos_page(request):
+    masters = SkuMaster.objects.filter(division__code='ninos')
+    context = {
+        "masters": masters,
+    }
+
+    return render(request, "skus/ninos.html", context)
+
+
+def preescolar_page(request):
+    masters = SkuMaster.objects.filter(division__code='preescolar')
+    context = {
+        "masters": masters,
+    }
+
+    return render(request, "skus/preescolar.html", context)
+
+
+def bebe_page(request):
+    masters = SkuMaster.objects.filter(division__code='bebes')
+    context = {
+        "masters": masters,
+    }
+
+    return render(request, "skus/bebes.html", context)

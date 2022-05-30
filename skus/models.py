@@ -18,18 +18,6 @@ class SkuMaster(models.Model):
     slug = models.SlugField(unique=True, blank=True, max_length=255)
     costo = models.DecimalField(decimal_places=2, max_digits=20, blank=True, null=True)
     precio = models.DecimalField(decimal_places=2, max_digits=20, blank=True, null=True)
-
-    def get_absolute_url(self):
-        return reverse("skus:detail", kwargs={"slug": self.slug})
-
-    def __str__(self):
-        return self.descripcion
-
-
-class SkuProduct(models.Model):
-    master = models.ForeignKey(SkuMaster, blank=True, null=True,
-                               on_delete=models.SET_NULL,
-                               related_name='master_skuproduct_set')
     marca = models.ForeignKey(Marca, blank=True, null=True,
                               on_delete=models.SET_NULL,
                               related_name='marca_skuproduct_set')
@@ -42,6 +30,21 @@ class SkuProduct(models.Model):
     composicion = models.ForeignKey(Composicion, blank=True, null=True,
                                     on_delete=models.SET_NULL,
                                     related_name='composicion_skuproduct_set')
+
+    class Meta:
+        ordering = ["sku"]
+
+    def get_absolute_url(self):
+        return reverse("skus:detail", kwargs={"slug": self.slug})
+
+    def __str__(self):
+        return self.descripcion
+
+
+class SkuProduct(models.Model):
+    master = models.ForeignKey(SkuMaster, blank=True, null=True,
+                               on_delete=models.SET_NULL,
+                               related_name='master_skuproduct_set')
     color = models.ForeignKey(Color, blank=True, null=True,
                               on_delete=models.SET_NULL,
                               related_name='color_skuproduct_set')
@@ -69,7 +72,7 @@ class SkuProduct(models.Model):
         return f"/skus/{self.master.slug}"
 
     class Meta:
-        ordering = ["color", "talla"]
+        ordering = ["master", "color", "talla"]
 
     # def sku(self):
     #     return self.master.sku + self.color.sku_sufix + self.talla.sku_sufix

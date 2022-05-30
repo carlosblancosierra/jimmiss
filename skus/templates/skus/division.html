@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head_title %} {% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row d-flex">
+        <div class="col s12 m4 bg-blue m-0 valign-wrapper">
+            <h1 class="text-white w-100 center">{{ division.title }}</h1>
+        </div>
+        <div class="col s12 m8 p-0">
+            <img src="{% static 'images/caballero-banner.jpg' %}" alt="" class="responsive-img">
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4 mb-5">
+    <div class="row">
+        {% for obj in masters %}
+        <div class="col s12 m3 mt-4">
+            <img src="{% static 'images/playera-placeholder.jpg' %}" alt="" class="responsive-img">
+            <div class="division-product-info">
+                <h2 class="division-product-title">{{ obj.descripcion }}</h2>
+                <p class="division-product-iva">(IVA incluido)</p>
+                <p class="division-product-costo">Costo ${{ obj.costo }}.00</p>
+                <p class="division-product-pvps">PVPS ${{ obj.precio }}.00</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="row mt-2">
+        <div class="col s12">
+            <p class="grey-text">Precio de Venta al Público Sugerida</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
