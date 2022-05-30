@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.templatetags.static import static
+from .data import SKU
 
 
 def home_page(request):
@@ -224,3 +225,10 @@ def product_page(request):
     }
 
     return render(request, "producto.html", context)
+
+
+def data_page(request):
+    context = {
+        "SKU": SKU
+    }
+    return render(request, "data.html", context)

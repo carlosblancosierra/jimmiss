@@ -42,7 +42,7 @@ TALLAS = [
     {"TITLE": "14 AÑOS", "SKU_SUFIX": "14", "SHORT": "14 Años", "ORDER": 0},
 ]
 
-DATA = {
+SKU = {
     "909501": {
         "MARCA": "JIM",
         "DIVISION": "CABALLERO",
