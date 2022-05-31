@@ -7,6 +7,8 @@
 {% url 'logout' as logout_url %}
 {% url 'accounts:staff-home' as staff_home_url %}
 {% url 'accounts:home' as account_home_url %}
+{% url 'skus:list' as catalogo_url %}
+{% url 'contacto' as contacto_url %}
 
 
 
@@ -14,14 +16,14 @@
     <div class="container">
         <div class="nav-wrapper black-text">
             <a href="{{ home_url }}" class="brand-logo">
-                <img src="{% static 'images/logo.png' %}" class="responsive-img" width="130px" alt="">
+                <img src="{% static 'images/fabrimalla-logo.png' %}" class="responsive-img" width="130px" alt="">
             </a>
             <a href="#" data-target="slide-out" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="{{ home_url }}">INICIO</a></li>
-                <li><a href="{{ home_url }}">CATÁLOGO</a></li>
+                <li><a href="{{ catalogo_url }}">CATÁLOGO</a></li>
                 <li><a href="{{ nosotros_url }}">NOSOTROS</a></li>
-                <li><a href="{{ home_url }}">CONTACTO</a></li>
+                <li><a href="{{ contacto_url }}">CONTACTO</a></li>
                 <li><a class="dropdown-trigger" href="#!" data-target="dropdown-nav-account">MI CUENTA<i
                         class="material-icons right">arrow_drop_down</i></a></li>
                 <li><a href="{{ cart_url }}">REALIZAR PEDIDO</a></li>

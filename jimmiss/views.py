@@ -181,6 +181,12 @@ def nosotros_page(request):
     return render(request, "nosotros.html", context)
 
 
+def contacto_page(request):
+    context = {}
+
+    return render(request, "contacto.html", context)
+
+
 def cart_page(request):
     products = [
         {

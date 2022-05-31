@@ -1,28 +1,87 @@
 {% load static %}
 
+{% url 'home' as home_url %}
+{% url 'carts:home' as cart_url %}
+{% url 'nosotros' as nosotros_url %}
+{% url 'login' as login_url %}
+{% url 'logout' as logout_url %}
+{% url 'accounts:staff-home' as staff_home_url %}
+{% url 'accounts:home' as account_home_url %}
+{% url 'skus:list' as catalogo_url %}
+{% url 'contacto' as contacto_url %}
+
 <footer class="page-footer bg-blue mt-5">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
-                    content.</p>
+                <img src="{% static 'images/fabrimalla-logo.png' %}" class="responsive-img mt-4" width="200px"
+                     alt="Fabrimalla">
+<!--                <p class="grey-text text-lighten-4">At vero eos et accusamus et iusto odio dignissimos ducimus qui-->
+<!--                    blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi-->
+<!--                    sint occaecati cupiditate non provident.</p>-->
             </div>
-            <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
+            <div class="col l3 s12">
                 <ul>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    <li>
+                        <a class="grey-text text-lighten-3"
+                           href="/">Inicio</a>
+                    </li>
+                    <li>
+                        <a class="grey-text text-lighten-3"
+                           href="{{ catalogo_url }}">Catalogo</a>
+                    </li>
+                    <li>
+                        <a class="grey-text text-lighten-3"
+                           href="{{ nosotros_url }}">Nosotros</a>
+                    </li>
+
+                    <li>
+                        <a class="grey-text text-lighten-3"
+                           href="{{ contacto_url }}">Contacto</a>
+                    </li>
+                    <li>
+                        <a class="grey-text text-lighten-3"
+                           href="{{ account_home_url }}">Mi cuenta</a>
+                    </li>
+
+
                 </ul>
             </div>
+            <div class="col l3 s12">
+                <ul>
+                    <li>
+                        <a class="grey-text text-lighten-3"
+                           href="/skus/dama?cat=ropa_interior">Dama</a>
+                    </li>
+                    <li>
+                        <a class="grey-text text-lighten-3"
+                           href="/skus/caballero?cat=ropa_interior">Caballero</a>
+                    </li>
+                    <li>
+                        <a class="grey-text text-lighten-3"
+                           href="/skus/niñas?cat=ropa_interior">Niña</a>
+                    </li>
+                    <li>
+                        <a class="grey-text text-lighten-3"
+                           href="/skus/niño?cat=ropa_interior">Niño</a>
+                    </li>
+                    <li>
+                        <a class="grey-text text-lighten-3"
+                           href="/skus/preescolar?cat=ropa_interior">Preescolar</a>
+                    </li>
+                    <li>
+                        <a class="grey-text text-lighten-3"
+                           href="/skus/bebe?cat=ropa_interior">Bebe</a>
+                    </li>
+                </ul>
+            </div>
+
         </div>
     </div>
-    <div class="footer-copyright">
+    <div class="footer-copyright bg-dblue">
         <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            © 2022 Fabrimalla
+            <a class="grey-text text-lighten-4 right" href="https://www.guork.mx/">Desarrollado por Guork.mx</a>
         </div>
     </div>
 </footer>

@@ -26,6 +26,7 @@ urlpatterns = [
     path('nosotros', views.nosotros_page, name='nosotros'),
     path('cart', views.cart_page, name='cart'),
     path('producto', views.product_page, name='producto'),
+    path('contacto', views.contacto_page, name='contacto'),
 
     path('skus/', include('skus.urls')),
     path('carrito/', include('carts.urls')),
