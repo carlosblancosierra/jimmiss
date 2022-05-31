@@ -100,7 +100,11 @@ class SkuProduct(models.Model):
     active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.master.sku + self.color.sku_sufix + self.talla.sku_sufix
+
+        if self.master:
+            return self.master.sku + self.color.sku_sufix + self.talla.sku_sufix
+        else:
+            return self.color.sku_sufix + self.talla.sku_sufix
 
     def get_absolute_url(self):
         return f"/skus/{self.master.slug}"

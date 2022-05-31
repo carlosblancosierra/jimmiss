@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.templatetags.static import static
-from .data import SKU, SKU_TEST, MARCAS, DIVISIONES, SERIES, COMPOSICIONES, COLORES, TALLAS
+from .data import SKU, SKU_TEST, MARCAS, DIVISIONES, SERIES, COMPOSICIONES, COLORES, TALLAS, CATEGORIAS
 from skus.models import SkuMaster, SkuProduct
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.exceptions import ObjectDoesNotExist
@@ -12,6 +12,7 @@ from series.models import Serie
 from composiciones.models import Composicion
 from colores.models import Color
 from tallas.models import Talla
+from categorias.models import Categoria
 
 
 def home_page(request):
@@ -242,7 +243,7 @@ def product_page(request):
 
 @staff_member_required
 def data_page(request):
-    for key, values in SKU_TEST.items():
+    for key, values in SKU.items():
         sku_master_qs = SkuMaster.objects.filter(sku=key)
         if len(sku_master_qs) == 0:
             sku = key
@@ -282,6 +283,13 @@ def data_page(request):
             else:
                 raise ObjectDoesNotExist
 
+            categoria_qs = Categoria.objects.filter(title="ROPA INTERIOR")
+            categoria_obj = None
+            if len(composicion_qs) == 1:
+                categoria_obj = categoria_qs.first()
+            else:
+                raise ObjectDoesNotExist
+
             slug = slugify(sku
                            + "-" + division_title
                            + "-" + marca_title
@@ -296,7 +304,8 @@ def data_page(request):
                                        division=division_obj,
                                        serie=serie_obj,
                                        composicion=composicion_obj,
-                                       slug=slug
+                                       slug=slug,
+                                       categoria=categoria_obj
                                        )
             new_sku_master.save()
 
@@ -393,6 +402,14 @@ def create_tags_page(request):
             new_obj = Composicion(title=title)
             new_obj.save()
             composiciones_list.append(new_obj)
+
+    categorias_list = []
+    for title in CATEGORIAS:
+        qs = Categoria.objects.filter(title=title)
+        if len(qs) == 0:
+            new_obj = Categoria(title=title)
+            new_obj.save()
+            categorias_list.append(new_obj)
 
     # {"TITLE": "BLANCO", "SKU_SUFIX": "BLA", "HEX": "#FFF"},
 

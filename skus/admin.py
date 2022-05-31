@@ -5,7 +5,7 @@ from . import models
 # Register your models here.
 
 class SkuMasterModelAdmin(admin.ModelAdmin):
-    list_display = ["sku", "descripcion", "marca", "division", "serie", "composicion", "costo", "precio"]
+    list_display = ["sku", "categoria", "descripcion", "marca", "division", "serie", "composicion", "costo", "precio"]
 
     search_fields = ["sku"]
     list_filter = ["marca", "division", "serie", "composicion", ]
