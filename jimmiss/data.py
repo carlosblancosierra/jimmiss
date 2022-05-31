@@ -7,6 +7,9 @@ SERIES = ["JIM ACTIVE", "ORANGUTAN", "FESTA", "CEREMONIA", "ELEPHANT", "JIRAFA",
 
 COMPOSICIONES = ["100% ALGODON", "CHIFON LIKRA"]
 
+CATEGORIAS = ["ROPA INTERIOR"]
+
+
 COLORES = [
     {"TITLE": "BLANCO", "SKU_SUFIX": "BLA", "HEX": "#FFF"},
     {"TITLE": "MARINO", "SKU_SUFIX": "MAR", "HEX": "#000"},
@@ -90,7 +93,7 @@ SKU = {
             "BLANCO": {
                 "TALLAS": ["CHICA", "MEDIANA", "GRANDE", "EXTRA GRANDE"]
             },
-        }
+        },
     },
     "909801": {
         "MARCA": "JIM",
@@ -102,10 +105,10 @@ SKU = {
         "PRECIO": 199,
         "COLORES": {
             "BLANCO": {
-                "TALLAS": ["CHICA", "GRANDE", "MEDIANA"]
+                "TALLAS": ["CHICA", "MEDIANA", "GRANDE", "EXTRA GRANDE"]
             },
             "MARINO": {
-                "TALLAS": ["CHICA", "GRANDE", "MEDIANA"]
+                "TALLAS": ["CHICA", "MEDIANA", "GRANDE", "EXTRA GRANDE"]
             }
         }
     },
@@ -119,10 +122,10 @@ SKU = {
         "PRECIO": 135,
         "COLORES": {
             "BLANCO": {
-                "TALLAS": ["CHICA", "GRANDE", "MEDIANA"]
+                "TALLAS": ["CHICA", "MEDIANA", "GRANDE", "EXTRA GRANDE"]
             },
             "MARINO": {
-                "TALLAS": ["CHICA", "GRANDE", "MEDIANA"]
+                "TALLAS": ["CHICA", "MEDIANA", "GRANDE", "EXTRA GRANDE"]
             }
         }
     },
@@ -136,10 +139,10 @@ SKU = {
         "PRECIO": 155,
         "COLORES": {
             "BLANCO": {
-                "TALLAS": ["CHICA", "GRANDE", "MEDIANA"]
+                "TALLAS": ["CHICA", "MEDIANA", "GRANDE", "EXTRA GRANDE"]
             },
             "MARINO": {
-                "TALLAS": ["CHICA", "GRANDE", "MEDIANA"]
+                "TALLAS": ["CHICA", "MEDIANA", "GRANDE", "EXTRA GRANDE"]
             }
         }
     },
@@ -385,7 +388,7 @@ SKU = {
             }
         }
     },
-    "E1133": {
+    "E11332": {
         "MARCA": "JIMMISS",
         "DIVISION": "PREESCOLAR",
         "DESCRIPCION": 'BOXER',
@@ -559,8 +562,8 @@ SKU = {
         "DESCRIPCION": 'CAMISETA T',
         "SERIE": "ENRREDADERA",
         "COMPOSICION": "100% ALGODON",
-        "COSTO": 53.39,
-        "PRECIO": 89,
+        "COSTO": 56.99,
+        "PRECIO": 95,
         "COLORES": {
             "BLANCO": {
                 "TALLAS": ["4 AÑOS", "6 AÑOS", "8 AÑOS", "10 AÑOS", "12 AÑOS"]
