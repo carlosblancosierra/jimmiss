@@ -11,6 +11,7 @@ from series.models import Serie
 from composiciones.models import Composicion
 from colores.models import Color
 from tallas.models import Talla
+from categorias.models import Categoria
 
 
 # Create your models here.
@@ -36,31 +37,39 @@ class SkuMaster(models.Model):
     composicion = models.ForeignKey(Composicion, blank=True, null=True,
                                     on_delete=models.SET_NULL,
                                     related_name='composicion_skuproduct_set')
-
+    categoria = models.ForeignKey(Categoria, blank=True, null=True,
+                                  on_delete=models.SET_NULL,
+                                  related_name='categoria_skuproduct_set')
     image = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                processors=[ResizeToFill(700, 700)],
+                                processors=[ResizeToFill(1200, 1200)],
                                 format='JPEG',
                                 options={'quality': 90})
     image_small = ImageSpecField(source='image',
-                                 processors=[ResizeToFill(400, 400)],
+                                 processors=[ResizeToFill(1200, 1200)],
                                  format='JPEG',
                                  options={'quality': 90})
     image_2 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(700, 700)],
+                                  processors=[ResizeToFill(1200, 1200)],
                                   format='JPEG',
                                   options={'quality': 90})
     image_3 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(700, 700)],
+                                  processors=[ResizeToFill(1200, 1200)],
                                   format='JPEG',
                                   options={'quality': 90})
     image_4 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(700, 700)],
+                                  processors=[ResizeToFill(1200, 1200)],
                                   format='JPEG',
                                   options={'quality': 90})
     image_5 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(700, 700)],
+                                  processors=[ResizeToFill(1200, 1200)],
                                   format='JPEG',
                                   options={'quality': 90})
+
+    image_alt_text = models.CharField(max_length=120, blank=True)
+    meta_description = models.CharField(max_length=120, blank=True)
+    primary_keyword = models.CharField(max_length=120, blank=True)
+    secondary_keyword_1 = models.CharField(max_length=120, blank=True)
+    seo_title = models.CharField(max_length=100, blank=True)
 
     class Meta:
         ordering = ["sku"]
@@ -90,12 +99,6 @@ class SkuProduct(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
 
-    # image_alt_text = models.CharField(max_length=120, blank=True)
-    # meta_description = models.CharField(max_length=120, blank=True)
-    # primary_keyword = models.CharField(max_length=120, blank=True)
-    # secondary_keyword_1 = models.CharField(max_length=120, blank=True)
-    # seo_title = models.CharField(max_length=100, blank=True)
-
     def __str__(self):
         return self.master.sku + self.color.sku_sufix + self.talla.sku_sufix
 
@@ -105,16 +108,6 @@ class SkuProduct(models.Model):
     class Meta:
         ordering = ["master", "color", "talla"]
 
-    # def sku(self):
-    #     return self.master.sku + self.color.sku_sufix + self.talla.sku_sufix
-
-
-# def pre_save_post_receiver(sender, instance, *args, **kwargs):
-#     if not instance.slug:
-#         instance.slug = create_slug(instance)
-#
-#
-# pre_save.connect(pre_save_post_receiver, sender=BlogPost)
 
 def pre_save_sku_product_receiver(sender, instance, *args, **kwargs):
     print(instance.sku)

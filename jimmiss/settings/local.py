@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'accounts',
     'addresses',
     'carts',
+    'categorias',
     'colores',
     'composiciones',
     'divisiones',
