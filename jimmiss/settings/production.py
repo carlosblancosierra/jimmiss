@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-sy8p#c=-qa6^i8r@wojlqofq=@8rt0fod@^5lb@eh8co8mxcvc
 DEBUG = True
 STATIC_LOCAL = False
 
-ALLOWED_HOSTS = ['jimmiss.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['jimmiss.herokuapp.com', '127.0.0.1', 'www.jimmiss.mx']
 
 # Application definition
 
