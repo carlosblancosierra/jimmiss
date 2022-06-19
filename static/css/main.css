@@ -115,27 +115,27 @@ h1, h2{
 }
 
 .bg-blue {
-    background-color:var(--blue);
+    background-color:var(--blue)!important;
 }
 
 .bg-dblue {
-    background-color:var(--dblue);
+    background-color:var(--dblue)!important;
 }
 
 .bg-red {
-    background-color:var(--red);
+    background-color:var(--red)!important;
 }
 
 .bg-blue2 {
-    background-color:var(--blue2);
+    background-color:var(--blue2)!important;
 }
 
 .bg-lblue {
-    background-color:var(--lblue);
+    background-color:var(--lblue)!important;
 }
 
 .bg-lblue2 {
-    background-color:var(--lblue2);
+    background-color:var(--lblue2)!important;
 }
 
 .text-blue {

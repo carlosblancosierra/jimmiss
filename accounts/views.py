@@ -106,6 +106,7 @@ def home_page(request):
     return render(request, "accounts/home.html", context)
 
 
+@staff_member_required
 def register_page_local(request):
     if request.method == 'POST':
         user_form = CustomUserCreationForm(request.POST or None)
