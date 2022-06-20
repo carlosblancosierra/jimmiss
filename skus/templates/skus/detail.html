@@ -58,22 +58,24 @@
 
                 <div class="row">
                     {% for v in values %}
+
+
                     <div class="col s2 px-1">
                         <p class="product-talla-square">{{ v.sku.talla.short }}</p>
-                    </div>
-                    {% endfor %}
-                </div>
-                <div class="row">
-                    {% for v in values %}
-                    <div class="col s2 px-1">
                         <input type="number" class="product-qty-square" name="{{ v.sku }}"
                                value="{{ v.quantity }}"
                         >
                     </div>
+                    {% if forloop.counter == 6 %}
+                    <div class="col s12">
+                        <p class="mt-0 font-weight-bold grey-text">Cantidad a elegir</p>
+                    </div>
+                    {% endif %}
                     {% endfor %}
+                    <div class="col s12">
+                        <p class="mt-0 font-weight-bold grey-text">Cantidad a elegir</p>
+                    </div>
                 </div>
-
-                <p class="mt-0 font-weight-bold grey-text">Cantidad a elegir</p>
 
                 {% endfor %}
 
