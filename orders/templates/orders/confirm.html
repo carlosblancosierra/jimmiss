@@ -29,7 +29,11 @@
             <div class="row card py-2 d-flex valign-wrapper cart-card">
 
                 <div class="col s12 m2">
-                    <img src="{% static 'images/playera-placeholder.jpg' %}" alt="" class="responsive-img">
+                    {% if obj.image %}
+                    <img src="{{ obj.image.url }}" alt="" class="responsive-img"/>
+                    {% else %}
+                    <img src="{% static 'images/placeholder.jpg' %}" alt="" class="responsive-img"/>
+                    {% endif %}
                 </div>
 
                 <div class="col s12 m6">
