@@ -104,6 +104,8 @@ def confirm_page(request):
             order.cart_entries.add(entry)
 
         request.session['cart_id'] = None
+        nueva_orden_mail_staff(order)
+        nueva_orden_mail_client(order)
         return redirect('orders:created')
 
     context = {
@@ -121,9 +123,6 @@ def created_page(request):
     order_qs = Order.objects.filter(id=order_id)
     if len(order_qs) == 1:
         order = order_qs.first()
-
-    nueva_orden_mail_staff(order)
-    nueva_orden_mail_client(order)
 
     print(order)
     context = {
