@@ -3,6 +3,8 @@ from django.core.paginator import Paginator
 
 from carts.models import CartEntry
 from divisiones.models import Division
+from categorias.models import Categoria
+
 from .models import SkuMaster, SkuProduct
 import unidecode
 
@@ -62,11 +64,19 @@ def detail_page(request, slug):
 
 def list_page(request, division_code=None):
     masters = SkuMaster.objects.all()
+    division = None
+    category = None
+    
     division_code = unidecode.unidecode(division_code)
-    division = Division.objects.filter(code=division_code).first()
 
     if division_code:
+        division = Division.objects.filter(code=division_code).first()
         masters = masters.filter(division=division)
+
+    category_code = request.GET.get('categoria', None)
+    if category_code:
+        category = Categoria.objects.filter(code=category_code).first()
+        masters = masters.filter(categoria=category)
 
     paginator = Paginator(masters, 20)  # Show 25 contacts per page.
 
@@ -76,6 +86,7 @@ def list_page(request, division_code=None):
     context = {
         "queryset": page_obj,
         "division": division,
+        "category": category,
     }
 
     return render(request, "skus/list.html", context)
