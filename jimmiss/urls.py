@@ -32,10 +32,11 @@ urlpatterns = [
     path('carrito/', include('carts.urls')),
     path('orders/', include('orders.urls')),
     path('accounts/', include('accounts.urls')),
+    path('accounts/', include('accounts.passwords.urls')),
     path('addresses/', include('addresses.urls')),
 
     path('logout', LogoutView.as_view(), name='logout'),
-    path('login', login_page, name="loging"),
+    path('login', login_page, name="login"),
     path('register-local', register_page_local, name="register-local"),
 
     path('admin/', admin.site.urls),

@@ -69,7 +69,7 @@ EMAIL_HOST_USER = 'jimmiss.sistemas@gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_PASSWORD = 'NBT29FRjdDfbzZLA'
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'JimMiss.mx'
+DEFAULT_FROM_EMAIL = 'no-responder@jimmiss.mx'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

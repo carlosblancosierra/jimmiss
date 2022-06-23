@@ -9,6 +9,8 @@
 {% url 'accounts:home' as account_home_url %}
 {% url 'skus:list' as catalogo_url %}
 {% url 'contacto' as contacto_url %}
+{% url 'password_reset' as password_reset_url %}
+{% url 'password_change' as password_change_url %}
 
 
 
@@ -44,11 +46,12 @@
             <li><a href="{{ home_url }}">Pedidos</a></li>
             <li class="divider"></li>
         {% endif %}
+            <li><a href="{{ password_change_url }}">Cambiar Contraseña</a></li>
             <li><a href="{{ logout_url }}">Cerrar Sesión</a></li>
 
     {% else %}
     <li><a href="{{ login_url }}">Iniciar Sesión</a></li>
-    <li><a href="{{ login_url }}">Restablecer contraseña</a></li>
+    <li><a href="{{ password_reset_url }}">Restablecer contraseña</a></li>
 
     {% endif %}
 </ul>
