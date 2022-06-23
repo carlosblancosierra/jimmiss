@@ -5,6 +5,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponseForbidden
 
 from .models import Order
+from .emails import nueva_orden_mail_staff, nueva_orden_mail_client
 
 
 # Create your views here.
@@ -121,6 +122,9 @@ def created_page(request):
     if len(order_qs) == 1:
         order = order_qs.first()
 
+    nueva_orden_mail_staff(order)
+    nueva_orden_mail_client(order)
+
     print(order)
     context = {
         "order": order,
@@ -183,3 +187,12 @@ def list_page(request):
     }
 
     return render(request, "orders/list.html", context)
+
+@staff_member_required
+def email_test(request):
+    context = {}
+
+    nueva_orden_mail_staff("JM3")
+    nueva_orden_mail_client("JM3")
+
+    return redirect("/")
