@@ -17,6 +17,8 @@
     </div>
 </div>
 
+{% if queryset %}
+
 <div class="container mt-4 mb-5">
     <div class="row">
         {% for obj in queryset %}
@@ -67,5 +69,18 @@
         </a>
     </li>
 </ul>
+
+{% else %}
+
+<div class="container mh-50">
+    <div class="row">
+        <p class="center mt-5 pt-5 font-200">
+            No se encontraron articulos para esta busqueda
+        </p>
+        <p class="center"><a href="/" class="btn bg-blue">Volver al Inicio</a></p>
+    </div>
+</div>
+
+{% endif %}
 
 {% endblock %}
