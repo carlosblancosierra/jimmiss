@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404
-from carts.models import CartEntry
+from django.core.paginator import Paginator
 
+from carts.models import CartEntry
 from divisiones.models import Division
 from .models import SkuMaster, SkuProduct
+import unidecode
 
 
 # Create your views here.
@@ -58,70 +60,22 @@ def detail_page(request, slug):
     return render(request, "skus/detail.html", context)
 
 
-def list_page(request):
+def list_page(request, division_code=None):
     masters = SkuMaster.objects.all()
+    division_code = unidecode.unidecode(division_code)
+    division = Division.objects.filter(code=division_code).first()
+
+    if division_code:
+        masters = masters.filter(division=division)
+
+    paginator = Paginator(masters, 20)  # Show 25 contacts per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        "masters": masters,
-    }
-
-    return render(request, "skus/list.html", context)
-
-
-def dama_page(request):
-    masters = SkuMaster.objects.filter(division__code='dama')
-    context = {
-        "title": 'Dama',
-        "masters": masters,
-    }
-
-    return render(request, "skus/list.html", context)
-
-
-def caballero_page(request):
-    masters = SkuMaster.objects.filter(division__code='caballero')
-    context = {
-        "title": 'Caballero',
-        "masters": masters,
-    }
-
-    return render(request, "skus/list.html", context)
-
-
-def ninas_page(request):
-    masters = SkuMaster.objects.filter(division__code='ninas')
-    context = {
-        "title": 'Niñas',
-        "masters": masters,
-    }
-
-    return render(request, "skus/list.html", context)
-
-
-def ninos_page(request):
-    masters = SkuMaster.objects.filter(division__code='ninos')
-    context = {
-        "title": 'Niños',
-        "masters": masters,
-    }
-
-    return render(request, "skus/list.html", context)
-
-
-def preescolar_page(request):
-    masters = SkuMaster.objects.filter(division__code='preescolar')
-    context = {
-        "title": 'Preescolar',
-        "masters": masters,
-    }
-
-    return render(request, "skus/list.html", context)
-
-
-def bebe_page(request):
-    masters = SkuMaster.objects.filter(division__code='bebe')
-    context = {
-        "title": 'Bebe',
-        "masters": masters,
+        "queryset": page_obj,
+        "division": division,
     }
 
     return render(request, "skus/list.html", context)
