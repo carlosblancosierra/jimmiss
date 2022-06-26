@@ -37,7 +37,7 @@ urlpatterns = [
 
     path('logout', LogoutView.as_view(), name='logout'),
     path('login', login_page, name="login"),
-    path('register-local', register_page_local, name="register-local"),
+    path('registro', register_page_local, name="register"),
 
     path('admin/', admin.site.urls),
 

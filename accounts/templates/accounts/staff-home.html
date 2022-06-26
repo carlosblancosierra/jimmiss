@@ -6,6 +6,8 @@
 {% block content %}
 
 {% url 'orders:staff-list' as orders_staff_list_url %}
+{% url 'register' as register_url %}
+
 <div class="container my-5">
     <div class="row">
         <div class="col s12">
@@ -69,6 +71,8 @@
                     </a>
                     {% endfor %}
                 </div>
+                <p><a href="{{ register_url }}" class="btn bg-blue right">Crear usuario</a></p>
+
             </div>
 
             <div class="col s12 m12">
@@ -86,7 +90,7 @@
                 </div>
             </div>
 
-             <div class="col s12 m12">
+            <div class="col s12 m12">
                 <h3>Marcas</h3>
 
                 <div class="collection">

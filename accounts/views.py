@@ -127,10 +127,10 @@ def register_page_local(request):
 
             user_details_obj.save()
 
-            messages.success(request, 'Your profile was successfully updated!')
+            messages.success(request, 'Usuario creado con éxito')
             return redirect('/')
         else:
-            messages.error(request, 'Please correct the error below.')
+            messages.error(request, 'Error, por favor corrija la información')
     else:
         user_form = CustomUserCreationForm()
         profile_form = UserDetailsForm()

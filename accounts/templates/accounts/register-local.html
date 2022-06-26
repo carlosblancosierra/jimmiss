@@ -3,12 +3,13 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col s12">
-            <form method="post">
+        <div class="col s12 m8 offset-m2 mt-5">
+            <h1 class="font-200 text-blue center mb-5">Registro de usuarios</h1>
+            <form method="post" class="card px-5 py-3">
                 {% csrf_token %}
                 {{ user_form.as_p }}
                 {{ profile_form.as_p }}
-                <button type="submit">Registrarme</button>
+                <p class="center"><button type="submit" class="btn-large bg-blue">Crear usuario</button></p>
             </form>
         </div>
     </div>
