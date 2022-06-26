@@ -1,13 +1,14 @@
 from django.template.loader import render_to_string, get_template
 from django.core.mail import send_mail, mail_managers
 from .models import Order
+from jimmiss.settings.production import EMAIL_STATIC_URL
 
 
 def nueva_orden_mail_staff(order_id):
     qs = Order.objects.filter(order_id=order_id)
     if qs.exists():
         order = qs.first()
-        context = {"order": order}
+        context = {"order": order, "STATIC_URL": EMAIL_STATIC_URL}
         try:
             subject = 'JimMiss - Nueva Orden'
             message = render_to_string('mails/orders/nueva_staff.txt', context)
@@ -33,9 +34,9 @@ def nueva_orden_mail_client(order_id):
     qs = Order.objects.filter(order_id=order_id)
     if qs.exists():
         order = qs.first()
-        context = {"order": order}
+        context = {"order": order, "STATIC_URL": EMAIL_STATIC_URL}
         try:
-            subject = 'JimMiss - Nueva Orden'
+            subject = 'Tu orden de JimMiss.mx'
             message = render_to_string('mails/orders/nueva_cliente.txt', context)
             html_message = render_to_string('mails/orders/nueva_cliente.html', context)
             to_mails = [order.user.email]

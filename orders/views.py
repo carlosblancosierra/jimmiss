@@ -7,7 +7,6 @@ from django.http import HttpResponseForbidden
 from .models import Order
 from .emails import nueva_orden_mail_staff, nueva_orden_mail_client
 
-
 # Create your views here.
 def address_page(request):
     if not request.user.is_authenticated:
@@ -194,11 +193,14 @@ def list_page(request):
 
     return render(request, "orders/list.html", context)
 
+
 @staff_member_required
 def email_test(request):
-    context = {}
+    order_id = "JM3"
+    # nueva_orden_mail_staff("JM3")
+    print(nueva_orden_mail_client(order_id))
 
-    nueva_orden_mail_staff("JM3")
-    nueva_orden_mail_client("JM3")
+    qs = Order.objects.filter(order_id=order_id)
+    context = {"order": qs.first()}
 
-    return redirect("/")
+    return render(request, "mails/orders/asd-inline.html", context)
