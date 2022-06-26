@@ -13,17 +13,16 @@
 {% url 'password_change' as password_change_url %}
 
 
-
 <nav class="navbar bg-blue">
     <div class="container">
         <div class="nav-wrapper black-text">
             <a href="{{ home_url }}" class="brand-logo">
-                <img src="{% static 'images/jimmiss-logo.png' %}" class="responsive-img" width="130px" alt="">
+                <img src="{% static 'images/jimmiss-logo.png' %}" class="responsive-img" width="130px" alt="JimMiss">
             </a>
             <a href="#" data-target="slide-out" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="{{ home_url }}">INICIO</a></li>
-                <li><a href="{{ catalogo_url }}">CATÁLOGO</a></li>
+                <li><a href="{{ home_url }}">CATÁLOGO</a></li>
                 <li><a href="{{ nosotros_url }}">NOSOTROS</a></li>
                 <li><a href="{{ contacto_url }}">CONTACTO</a></li>
                 <li><a class="dropdown-trigger" href="#!" data-target="dropdown-nav-account">MI CUENTA<i
@@ -37,17 +36,16 @@
 
 <ul id="dropdown-nav-account" class="dropdown-content">
 
-
     {% if request.user.is_authenticated %}
-        {% if request.user.is_staff %}
-            <li><a href="{{ staff_home_url }}">Panel de Staff</a></li>
-        {% else %}
-            <li><a href="{{ account_home_url }}">Panel</a></li>
-            <li><a href="{{ home_url }}">Pedidos</a></li>
-            <li class="divider"></li>
-        {% endif %}
-            <li><a href="{{ password_change_url }}">Cambiar Contraseña</a></li>
-            <li><a href="{{ logout_url }}">Cerrar Sesión</a></li>
+    {% if request.user.is_staff %}
+    <li><a href="{{ staff_home_url }}">Panel de Staff</a></li>
+    {% else %}
+    <li><a href="{{ account_home_url }}">Panel</a></li>
+    <li><a href="{{ home_url }}">Pedidos</a></li>
+    <li class="divider"></li>
+    {% endif %}
+    <li><a href="{{ password_change_url }}">Cambiar Contraseña</a></li>
+    <li><a href="{{ logout_url }}">Cerrar Sesión</a></li>
 
     {% else %}
     <li><a href="{{ login_url }}">Iniciar Sesión</a></li>
@@ -55,3 +53,34 @@
 
     {% endif %}
 </ul>
+
+
+<ul id="slide-out" class="sidenav bg-blue">
+    <div class="p-5">
+        <img src="{% static 'images/jimmiss-logo.png' %}" class="responsive-img" alt="JimMiss">
+    </div>
+    <li><a href="{{ home_url }}" class="white-text">INICIO</a></li>
+    <li><a href="{{ home_url }}" class="white-text">CATÁLOGO</a></li>
+    <li><a href="{{ nosotros_url }}" class="white-text">NOSOTROS</a></li>
+    <li><a href="{{ contacto_url }}" class="white-text">CONTACTO</a></li>
+    {% if request.user.is_authenticated %}
+    {% if request.user.is_staff %}
+    <li><a href="{{ staff_home_url }}" class="white-text text-uppercase">Panel de Staff</a></li>
+    {% else %}
+    <li><a href="{{ account_home_url }}" class="white-text text-uppercase">Panel</a></li>
+    <li><a href="{{ home_url }}" class="white-text text-uppercase">Pedidos</a></li>
+    <li class="divider"></li>
+    {% endif %}
+    <li><a href="{{ password_change_url }}" class="white-text text-uppercase">Cambiar Contraseña</a></li>
+    <li><a href="{{ logout_url }}" class="white-text text-uppercase">Cerrar Sesión</a></li>
+
+    {% else %}
+    <li><a href="{{ login_url }}" class="white-text text-uppercase">Iniciar Sesión</a></li>
+    <li><a href="{{ password_reset_url }}" class="white-text text-uppercase">Restablecer contraseña</a></li>
+
+    {% endif %}
+
+    <li><a href="{{ cart_url }}" class="white-text btn bg-lblue">REALIZAR PEDIDO</a></li>
+
+</ul>
+
