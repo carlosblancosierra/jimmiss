@@ -15,6 +15,10 @@ def address_page(request):
 
     cart_id = request.session.get("cart_id", None)
     entries = CartEntry.objects.filter(cart__id=cart_id)
+
+    if not entries.exists():
+        return redirect("carts:home")
+
     user = request.user
 
     total = 0
@@ -84,6 +88,9 @@ def confirm_page(request):
     cart_id = request.session.get("cart_id", None)
     address_id = request.session.get("address_id", None)
     entries = CartEntry.objects.filter(cart__id=cart_id)
+
+    if not entries.exists():
+        return redirect("carts:home")
 
     total = 0
     for entry in entries:
