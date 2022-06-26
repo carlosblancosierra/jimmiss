@@ -59,8 +59,8 @@
             <div class="row card py-2 d-flex valign-wrapper cart-card">
 
                 <div class="col s12 m2">
-                    {% if obj.sku_product.image %}
-                    <img src="{{ obj.sku_product.image.url }}" alt="" class="responsive-img"/>
+                    {% if obj.sku_product.master.image %}
+                    <img src="{{ obj.sku_product.master.image.url }}" alt="" class="responsive-img"/>
                     {% else %}
                     <img src="{% static 'images/placeholder.jpg' %}" alt="" class="responsive-img"/>
                     {% endif %}

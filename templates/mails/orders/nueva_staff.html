@@ -85,10 +85,10 @@
                 <tr style="font-family: 'Lato', Helvetica, sans-serif;color: #333447;line-height: 1.5;">
                     <td style="font-family: 'Lato', Helvetica, sans-serif;color: #333447;line-height: 1.5;">
 
-                        {% if obj.image %}
-                        <img src="{{ STATIC_URL }}{{ obj.image.url }}" width="100px" height="auto"/>
+                        {% if obj.sku_product.master.image %}
+                        <img src="{{ obj.sku_product.master.image.url }}" width="100px" height="auto"/>
                         {% else %}
-                        <img src="{{ STATIC_URL }}{% static 'images/placeholder.jpg' %}" width="100px"/>
+                        <img src="{% static 'images/placeholder.jpg' %}" alt="" width="100px"/>
                         {% endif %}
 
                     </td>
