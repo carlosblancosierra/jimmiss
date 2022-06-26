@@ -6,11 +6,34 @@
 
 {% block content %}
 
-<div class="container my-5">
+<div class="container my-5 d-none d-md-block">
+    <div class="row">
+        <div class="col s4">
+            <h1 class="text-lblue font-150 center">1 - Carrito</h1>
+        </div>
+        <div class="col s4">
+            <h1 class="text-lblue font-150 center">2 - Dirección de entrega</h1>
+        </div>
+        <div class="col s4">
+            <h1 class="font-150 center">3 - Completar orden</h1>
+        </div>
+        <div class="col s12">
+            <div class="progress bg-lblue2">
+                <div class="determinate bg-lblue" style="width: 66%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5 d-md-none">
     <div class="row">
         <div class="col s12">
-            <h1 class="text-lblue font-200">Dirección de Entrega</h1>
-            <div class="span bg-lblue py-1"></div>
+            <h1 class="text-lblue font-200 center">Dirección de Entrega</h1>
+            <div class="col s12">
+                <div class="progress bg-lblue2">
+                    <div class="determinate bg-lblue" style="width: 66%"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -22,7 +45,7 @@
         <div class="col s12 m6 px-4">
             <form method="POST" action=""> {% csrf_token %}
 
-                <h4 class="text-lblue">Dirección nueva</h4>
+                <h4 class="text-lblue mt-0">Dirección nueva</h4>
 
                 <div class="input-field">
                     <input id="nombre_completo" type="text" class="" name="nombre_completo">
