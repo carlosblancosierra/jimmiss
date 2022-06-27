@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col s12">
+            <h1 class="text-lblue font-200">Detalle de usuario</h1>
+            <div class="span bg-lblue py-1"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container mh-50">
+    <div class="row">
+        <div class="col s12">
+            <h2 class="text-lblue font-150 mt-5 font-weight-bold">Información:</h2>
+            <p class="font-125"><span class="font-weight-bold">Nombre de Usuario:</span> {{ user.user.username }}</p>
+            <p class="font-125"><span class="font-weight-bold">Email:</span> {{ user.user.email }}</p>
+            <!--            <p>Nombre completo: {{ user.full_name }}</p>-->
+            <p class="font-125"><span class="font-weight-bold">Nombre comercial:</span> {{ user.nombre_comercial }}</p>
+            <p class="font-125"><span class="font-weight-bold">Razón social:</span> {{ user.razon_social }}</p>
+            <p class="font-125"><span class="font-weight-bold">Teléfono:</span> {{ user.telefono }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <h2 class="text-lblue font-150 mt-5 font-weight-bold">Ordenes:</h2>
+
+            <div class="collection">
+                <a class="collection-item">
+                    <div class="row">
+                        <div class="col s1">
+                            <p>ID</p>
+                        </div>
+                        <div class="col s3">
+                            <p>Fecha</p>
+                        </div>
+                        <div class="col s2">
+                            <p>Estatus</p>
+                        </div>
+                        <div class="col s4">
+                            <p>Dirección</p>
+                        </div>
+                        <div class="col s1">
+                            <p>Total</p>
+                        </div>
+                    </div>
+                </a>
+
+                {% for order in orders %}
+                <a href="{{ order.get_staff_url }}" class="collection-item">
+                    <div class="row">
+                        <div class="col s1">
+                            {{ order.order_id }}
+                        </div>
+                        <div class="col s3">
+                            {{ order.timestamp }}
+                        </div>
+                        <div class="col s2">
+                            {{ order.status }}
+                        </div>
+                        <div class="col s4">
+                            {{ order.direccion_entrega }}
+                        </div>
+                        <div class="col s1">
+                            ${{ order.total }}
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+
+            </div>
+
+            <h2 class="text-lblue font-150 mt-5 font-weight-bold">Direcciones:</h2>
+            <div class="row">
+                {% for address in addresses %}
+                <div class="col s12 m6">
+                    <div class="card p-3">
+                        <p class="m-0 p-0 font-150"><strong>{{ address.nombre_completo }}</strong></p>
+                        <p class="m-0 p-0"><strong>Teléfono:</strong> {{ address.telefono }}</p>
+                        <p class="m-0 p-0"><strong>Calle:</strong> {{ address.calle_numero }}</p>
+                        <p class="m-0 p-0"><strong>Colonia:</strong> {{ address.colonia }}</p>
+                        <p class="m-0 p-0"><strong>Ciudad:</strong> {{ address.ciudad }}</p>
+                        <p class="m-0 p-0"><strong>Estado:</strong> {{ address.estado }}</p>
+                        <p class="m-0 p-0"><strong>País:</strong> {{ address.pais }}</p>
+                        <p class="m-0 p-0"><strong>Código Postal:</strong> {{ address.codigo_postal }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+
+            <!--            <div class="collection">-->
+            <!--                {% for cart in carts %}-->
+            <!--                <a class="collection-item">-->
+            <!--                    <div class="row">-->
+            <!--                        <div class="col s2">-->
+            <!--                            {{ cart.total }}-->
+            <!--                        </div>-->
+            <!--                        <div class="col s3">-->
+            <!--                            {{ cart.updated }}-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </a>-->
+            <!--                {% endfor %}-->
+            <!--            </div>-->
+        </div>
+    </div>
+</div>
+
+{% endblock %}

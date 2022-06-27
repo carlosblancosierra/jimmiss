@@ -23,4 +23,5 @@ class UserDetails(models.Model):
     def __str__(self):
         return self.user.username
 
-
+    def get_absolute_url(self):
+        return f"/accounts/{self.user.username}"

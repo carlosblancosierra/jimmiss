@@ -31,33 +31,51 @@
             <div class="col s12 m12">
                 <h3>Ultimas ordenes</h3>
                 <div class="collection">
-                    {% for order in orders %}
 
                     <a href="{{ order.get_staff_url }}" class="collection-item">
                         <div class="row">
                             <div class="col s2">
-                                <p>{{ order.order_id }}</p>
+                                ID
                             </div>
                             <div class="col s4">
-                                <p>{{ order.timestamp }}</p>
+                                Fecha
                             </div>
                             <div class="col s2">
-                                <p>{{ order.user }}</p>
+                                Usuario
                             </div>
                             <div class="col s2">
-                                <p>{{ order.status }}</p>
+                                Estatus
                             </div>
                             <div class="col s1">
-                                <p>${{ order.total }}</p>
+                                Total
+                            </div>
+                        </div>
+
+                    </a>
+
+                    {% for order in orders %}
+                    <a href="{{ order.get_staff_url }}" class="collection-item">
+                        <div class="row">
+                            <div class="col s2">
+                                {{ order.order_id }}
+                            </div>
+                            <div class="col s4">
+                                {{ order.timestamp }}
+                            </div>
+                            <div class="col s2">
+                                {{ order.user }}
+                            </div>
+                            <div class="col s2">
+                                {{ order.status }}
+                            </div>
+                            <div class="col s1">
+                                ${{ order.total }}
                             </div>
                         </div>
 
                     </a>
                     {% endfor %}
-
                 </div>
-
-
                 <p><a href="{{ orders_staff_list_url }}" class="btn bg-blue right">Ver Todas</a></p>
             </div>
 
@@ -65,9 +83,28 @@
                 <h3>Usuarios</h3>
 
                 <div class="collection">
+
+                    <a class="collection-item">
+                        <div class="row">
+                            <div class="col s3">
+                                Usuario
+                            </div>
+                            <div class="col s3">
+                                Correo
+                            </div>
+                        </div>
+                    </a>
+
                     {% for user in users %}
-                    <a href="{{ order.get_staff_url }}" class="collection-item">
-                        {{ user }}
+                    <a href="{{ user.get_absolute_url }}" class="collection-item">
+                        <div class="row">
+                            <div class="col s3">
+                                {{ user }}
+                            </div>
+                            <div class="col s3">
+                                {{ user.user.email }}
+                            </div>
+                        </div>
                     </a>
                     {% endfor %}
                 </div>
@@ -79,12 +116,51 @@
                 <h3>Productos</h3>
 
                 <div class="collection">
+
+                    <a class="collection-item">
+                        <div class="row">
+                            <div class="col s3">
+                                Descripción
+                            </div>
+                            <div class="col s3">
+                                SKU
+                            </div>
+                            <div class="col s3">
+                                Precio
+                            </div>
+                            <div class="col s3">
+                                Costo
+                            </div>
+                        </div>
+                    </a>
                     {% for skumaster in skumasters %}
                     <a href="{{ order.get_staff_url }}" class="collection-item">
-                        {{ skumaster.descripcion }}
-                        {{ skumaster.sku }}
-                        {{ skumaster.precio }}
-                        {{ skumaster.costo }}
+                        <div class="row">
+                            <div class="col s3">
+                                {{ skumaster.descripcion }}
+                            </div>
+                            <div class="col s3">
+                                {{ skumaster.sku }}
+                            </div>
+                            <div class="col s3">
+                                {{ skumaster.precio }}
+                            </div>
+                            <div class="col s3">
+                                {{ skumaster.costo }}
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col s12 m12">
+                <h3>Categorias</h3>
+
+                <div class="collection">
+                    {% for categoria in categorias %}
+                    <a href="{{ order.get_staff_url }}" class="collection-item">
+                        {{ categoria }}
                     </a>
                     {% endfor %}
                 </div>
@@ -101,6 +177,79 @@
                     {% endfor %}
                 </div>
             </div>
+
+            <div class="col s12 m12">
+                <h3>Colores</h3>
+
+                <div class="collection">
+                    <a href="{{ order.get_staff_url }}" class="collection-item">
+                        <div class="row">
+                            <div class="col s3">Color</div>
+                            <div class="col s3">Código Hex</div>
+                        </div>
+                    </a>
+
+                    {% for color in colores %}
+
+                    <a href="{{ order.get_staff_url }}" class="collection-item">
+                        <div class="row">
+                            <div class="col s3">{{ color }}</div>
+                            <div class="col s3">{{ color.hex }}</div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col s12 m12">
+                <h3>Composiciones</h3>
+
+                <div class="collection">
+                    {% for composicion in composiciones %}
+                    <a href="{{ order.get_staff_url }}" class="collection-item">
+                        {{ composicion }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col s12 m12">
+                <h3>Divisiones</h3>
+
+                <div class="collection">
+                    {% for division in divisiones %}
+                    <a href="{{ order.get_staff_url }}" class="collection-item">
+                        {{ division }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col s12 m12">
+                <h3>Series</h3>
+
+                <div class="collection">
+                    {% for serie in series %}
+                    <a href="{{ order.get_staff_url }}" class="collection-item">
+                        {{ serie }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col s12 m12">
+                <h3>Tallas</h3>
+
+                <div class="collection">
+                    {% for talla in tallas %}
+                    <a href="{{ order.get_staff_url }}" class="collection-item">
+                        {{ talla }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+
         </div>
 
     </div>
