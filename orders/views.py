@@ -3,9 +3,11 @@ from carts.models import Cart, CartEntry
 from addresses.models import Address
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponseForbidden
+from django.contrib import messages
 
-from .models import Order
+from .models import Order, STATUS_CHOICES
 from .emails import nueva_orden_mail_staff, nueva_orden_mail_client
+
 
 # Create your views here.
 def address_page(request):
@@ -156,10 +158,19 @@ def staff_detail_page(request, order_id):
     if len(order_qs) == 1:
         order = order_qs.first()
 
+    if request.POST:
+        form = request.POST
+        status = form.get('order-status')
+        if order:
+            order.status = status
+            order.save()
+            messages.success(request, 'Estatus de orden actualizado')
+
     context = {
         "order": order,
         "address": order.direccion_entrega,
         "entries": order.cart_entries.all,
+        "STATUS_CHOICES": STATUS_CHOICES,
     }
 
     return render(request, "orders/staff-detail.html", context)

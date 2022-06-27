@@ -14,9 +14,33 @@
         <div class="col s12">
             <h1 class="text-lblue font-200">Detalles de la orden</h1>
             <div class="span bg-lblue py-1"></div>
+        </div>
+
+        <div class="col s12 m6">
             <p class="font-150">Identificador: {{ order.order_id }}</p>
             <p class="font-150">Usuario: {{ order.user }}</p>
             <p class="font-150">Fecha: {{ order.timestamp }}</p>
+        </div>
+
+        <div class="col s12 m6">
+            <h4 class="text-lblue">Estatus: {{ order.status }}</h4>
+            <div class="card cart-card p-3 m-2">
+                <form class="" method="POST"> {% csrf_token %}
+                    <div class="input-field col s12">
+                        <select name="order-status">
+                            {% for status in STATUS_CHOICES %}
+                            {% if status.0 == order.status %}
+                            <option value="{{status.0}}" selected>{{ status.0 }}</option>
+                            {% else %}
+                            <option value="{{status.0}}">{{ status.0 }}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                        <label>Cambiar estatus</label>
+                    </div>
+                    <p class="text-right"><button type="submit" class="btn bg-blue">Actualizar</button></p>
+                </form>
+            </div>
         </div>
     </div>
 </div>
