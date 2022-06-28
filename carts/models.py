@@ -101,5 +101,5 @@ class CartEntry(models.Model):
 
     objects = CartEntryManager()
 
-    def __unicode__(self):
-        return "This entry contains {} {}(s). Total: {}.".format(self.quantity, self.sku_product.product, self.total)
+    def __str__(self):
+        return "{} Unidad(es) de {}".format(self.quantity, self.sku_product.sku)
