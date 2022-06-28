@@ -14,32 +14,68 @@
     </div>
 </div>
 
-<div class="container">
-    {% for order in orders %}
-    <a href="{{ order.get_staff_url }}">
-        <div class="row card my-3">
-            <div class="col s1">
-                <p>{{ order.order_id }}</p>
+<div class="container mh-50">
+    <div class="collection">
+        <a class="collection-item">
+            <div class="row">
+                <div class="col s1">
+                    ID
+                </div>
+                <div class="col s3">
+                    Fecha
+                </div>
+                <div class="col s2">
+                    Estatus
+                </div>
+                <div class="col s4">
+                    Dirección
+                </div>
+                <div class="col s1">
+                    Total
+                </div>
             </div>
-            <div class="col s2">
-                <p>{{ order.timestamp }}</p>
-            </div>
-            <div class="col s2">
-                <p>{{ order.user }}</p>
-            </div>
-            <div class="col s2">
-                <p>{{ order.status }}</p>
-            </div>
-            <div class="col s4">
-                <p>{{ order.direccion_entrega }}</p>
-            </div>
-            <div class="col s1">
-                <p>${{ order.total }}</p>
-            </div>
-        </div>
-    </a>
-    {% endfor %}
+        </a>
 
+        {% for order in orders %}
+        <a href="{{ order.get_staff_url }}" class="collection-item">
+            <div class="row">
+                <div class="col s1">
+                    {{ order.order_id }}
+                </div>
+                <div class="col s3">
+                    {{ order.timestamp }}
+                </div>
+                <div class="col s2">
+                    {{ order.status }}
+                </div>
+                <div class="col s4">
+                    {{ order.direccion_entrega }}
+                </div>
+                <div class="col s1">
+                    ${{ order.total }}
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
 </div>
 
+<ul class="pagination center">
+
+    <li class="{% if not orders.has_previous %}disabled{% endif %}">
+        <a href="{% if orders.has_previous %}?page={{ orders.previous_page_number }}{% endif%}">
+            <i class="material-icons">chevron_left</i>
+        </a>
+    </li>
+
+    <li class=""><a href="?page=1">Primera</a></li>
+    <li class="active bg-blue"><a href="#!">Pagina {{ orders.number }} de {{ orders.paginator.num_pages }}</a></li>
+    <li class=""><a href="?page={{ orders.paginator.num_pages }}">Ultima</a></li>
+
+    <li class="{% if not orders.has_next %}disabled{% endif %}">
+        <a href="{% if orders.has_next %}?page={{ orders.next_page_number }}{% endif%}">
+            <i class="material-icons">chevron_right</i>
+        </a>
+    </li>
+</ul>
 {% endblock %}

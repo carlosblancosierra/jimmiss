@@ -19,19 +19,19 @@
         <a class="collection-item">
             <div class="row">
                 <div class="col s1">
-                    <p>ID</p>
+                    ID
                 </div>
                 <div class="col s3">
-                    <p>Fecha</p>
+                    Fecha
                 </div>
                 <div class="col s2">
-                    <p>Estatus</p>
+                    Estatus
                 </div>
                 <div class="col s4">
-                    <p>Dirección</p>
+                    Dirección
                 </div>
                 <div class="col s1">
-                    <p>Total</p>
+                    Total
                 </div>
             </div>
         </a>
@@ -40,19 +40,19 @@
         <a href="{{ order.get_staff_url }}" class="collection-item">
             <div class="row">
                 <div class="col s1">
-                    <p>{{ order.order_id }}</p>
+                    {{ order.order_id }}
                 </div>
                 <div class="col s3">
-                    <p>{{ order.timestamp }}</p>
+                    {{ order.timestamp }}
                 </div>
                 <div class="col s2">
-                    <p>{{ order.status }}</p>
+                    {{ order.status }}
                 </div>
                 <div class="col s4">
-                    <p>{{ order.direccion_entrega }}</p>
+                    {{ order.direccion_entrega }}
                 </div>
                 <div class="col s1">
-                    <p>${{ order.total }}</p>
+                    ${{ order.total }}
                 </div>
             </div>
         </a>

@@ -4,6 +4,7 @@ from addresses.models import Address
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponseForbidden
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 from .models import Order, STATUS_CHOICES
 from .emails import nueva_orden_mail_staff, nueva_orden_mail_client
@@ -144,8 +145,13 @@ def created_page(request):
 def staff_list_page(request):
     order_qs = Order.objects.all()
 
+    paginator = Paginator(order_qs, 50)  # Show 25 contacts per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        "orders": order_qs,
+        "orders": page_obj,
     }
 
     return render(request, "orders/staff-list.html", context)
