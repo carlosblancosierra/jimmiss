@@ -10,10 +10,8 @@ User = settings.AUTH_USER_MODEL
 
 STATUS_CHOICES = (
     ('INICIADA', 'INICIADA'),
-    ('ACEPTADA', 'ACEPTADA'),
-    ('PAGADA', 'PAGADA'),
-    ('ENVIADA', 'ENVIADA'),
-    ('RECIBIDA', 'RECIBIDA'),
+    ('CANCELADA', 'CANCELADA'),
+    ('SURTIDA', 'SURTIDA'),
 )
 
 

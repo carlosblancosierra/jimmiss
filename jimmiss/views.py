@@ -13,7 +13,9 @@ from composiciones.models import Composicion
 from colores.models import Color
 from tallas.models import Talla
 from categorias.models import Categoria
+from accounts.forms import UserDetailsForm
 
+from contactos.models import Contacto
 
 def home_page(request):
     categories = [
@@ -182,7 +184,36 @@ def nosotros_page(request):
 
 
 def contacto_page(request):
-    context = {}
+    profile_form = UserDetailsForm(request.POST)
+
+    if request.POST:
+        data = request.POST.dict()
+        name = data["name"]
+        email = data["email"]
+        nombre_comercial = data["nombre_comercial"]
+        direccion_comercial = data["direccion_comercial"]
+        razon_social = data["razon_social"]
+        telefono = data["telefono"]
+        comments = data["comments"]
+
+        new_obj = Contacto(
+            name=name,
+            email=email,
+            nombre_comercial=nombre_comercial,
+            direccion_comercial=direccion_comercial,
+            razon_social=razon_social,
+            telefono=telefono,
+            comments=comments
+            )
+
+        new_obj.save()
+
+
+
+
+    context = {
+        "form": profile_form,
+    }
 
     return render(request, "contacto.html", context)
 

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'categorias',
     'colores',
     'composiciones',
+    'contactos',
     'divisiones',
     'jimmiss',
     'marcas',

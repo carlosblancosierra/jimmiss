@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block head_title %}{{ title }} | {{ block.super }}{% endblock %}
+{% block head_title %} Iniciar Sesión | {{ block.super }}{% endblock %}
 
 {% block content %}
 
@@ -22,7 +22,7 @@
                 <p class="font-150 mt-0">Usuario Registrados</p>
                 <form method="POST"> {% csrf_token %}
                     {{ form }}
-                    <button type="submit" class="btn-large bg-blue mt-3 w-100">Identicarse</button>
+                    <button type="submit" class="btn-large bg-blue mt-3 w-100">Identificarse</button>
                 </form>
                 {% if error %}
                 <p class="text-red">{{ error }}</p>
@@ -30,7 +30,7 @@
             </div>
             <div class="card p-5">
                 <p class="font-150 mt-0">¿No tienes cuenta? </p>
-                <a class="btn-large bg-lblue w-100 mt-4" href="">Registrate</a>
+                <a class="btn-large bg-lblue w-100 mt-4" href="/contacto">Registrate</a>
             </div>
 
         </div>

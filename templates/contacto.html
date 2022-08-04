@@ -17,9 +17,50 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container my-5">
     <div class="row">
+        <div class="row">
+            <form class="col s12 m8 offset-m2 card px-5 pb-5" method="POST"> {% csrf_token %}
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="name" type="text" class="valitate" required name="name">
+                        <label for="name">Nombre</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="email" type="text" class="valitate" required name="email">
+                        <label for="email">Correo Eléctronico</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="nombre_comercial" type="text" class="valitate" required name="nombre_comercial">
+                        <label for="nombre_comercial">Nombre Comercial</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="direccion_comercial" type="text" class="valitate" required name="direccion_comercial">
+                        <label for="direccion_comercial">Dirección Comercial</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="razon_social" type="text" class="valitate" required name="razon_social">
+                        <label for="razon_social">Razón Social</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="telefono" type="text" class="valitate" required name="telefono">
+                        <label for="telefono">Teléfono</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="comments" class="materialize-textarea" name="comments"></textarea>
+                        <label for="comments">Mensaje</label>
+                    </div>
+                </div>
+                <button type="submit" class='btn-large bg-lblue w-100 mt-4'>Enviar</button>
 
+            </form>
+        </div>
     </div>
 </div>
 
