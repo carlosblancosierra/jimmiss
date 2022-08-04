@@ -8,14 +8,26 @@
 
 <div class="container mt-5">
     <div class="row d-flex">
-        <div class="col s12 m4 bg-blue m-0 valign-wrapper">
+        <div class="col s12 m4 m-0 valign-wrapper {{ bg }}">
             <div class="w-100">
                 <h1 class="text-white w-100 center text-capitalize">{{ division.title }}</h1>
                 <h2 class="text-white font-150 center">{{ category.title }}</h2>
             </div>
         </div>
         <div class="col s12 m8 p-0">
-            <img src="{% static 'images/caballero-banner.jpg' %}" alt="" class="responsive-img">
+            {% if division.code == "caballero" %}
+            <img src="{% static 'images/caballero-banner.jpg' %}" alt="caballero" class="responsive-img h-100">
+            {% elif division.code == "dama" %}
+            <img src="{% static 'images/dama-banner.jpg' %}" alt="dama" class="responsive-img h-100">
+            {% elif division.code == "bebe" %}
+            <img src="{% static 'images/bebe-banner.jpg' %}" alt="bebe" class="responsive-img h-100">
+            {% elif division.code == "preescolar" %}
+            <img src="{% static 'images/preescolar-banner.jpg' %}" alt="preescolar" class="responsive-img h-100">
+            {% elif division.code == "ninos" %}
+            <img src="{% static 'images/ninos-banner.jpg' %}" alt="niños" class="responsive-img h-100">
+            {% elif division.code == "ninas" %}
+            <img src="{% static 'images/ninas-banner.jpg' %}" alt="niñas" class="responsive-img h-100">
+            {% endif %}
         </div>
     </div>
 </div>

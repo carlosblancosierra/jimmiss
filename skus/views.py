@@ -66,7 +66,8 @@ def list_page(request, division_code=None):
     masters = SkuMaster.objects.all()
     division = None
     category = None
-    
+    bg = "bg-blue"
+
     division_code = unidecode.unidecode(division_code)
 
     if division_code:
@@ -78,6 +79,9 @@ def list_page(request, division_code=None):
         category = Categoria.objects.filter(code=category_code).first()
         masters = masters.filter(categoria=category)
 
+    if division_code == 'ninas' or division_code == 'dama':
+        bg = "bg-red"
+
     paginator = Paginator(masters, 20)  # Show 25 contacts per page.
 
     page_number = request.GET.get('page')
@@ -87,6 +91,7 @@ def list_page(request, division_code=None):
         "queryset": page_obj,
         "division": division,
         "category": category,
+        "bg": bg,
     }
 
     return render(request, "skus/list.html", context)
