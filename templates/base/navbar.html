@@ -7,7 +7,7 @@
 {% url 'logout' as logout_url %}
 {% url 'accounts:staff-home' as staff_home_url %}
 {% url 'accounts:home' as account_home_url %}
-{% url 'skus:list' as catalogo_url %}
+{% url 'skus:all' as catalogo_url %}
 {% url 'contacto' as contacto_url %}
 {% url 'password_reset' as password_reset_url %}
 {% url 'password_change' as password_change_url %}
@@ -22,7 +22,7 @@
             <a href="#" data-target="slide-out" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="{{ home_url }}">INICIO</a></li>
-                <li><a href="{{ home_url }}">CATÁLOGO</a></li>
+                <li><a href="{{ catalogo_url }}">CATÁLOGO</a></li>
                 <li><a href="{{ nosotros_url }}">NOSOTROS</a></li>
                 <li><a href="{{ contacto_url }}">CONTACTO</a></li>
                 <li><a class="dropdown-trigger" href="#!" data-target="dropdown-nav-account">MI CUENTA<i

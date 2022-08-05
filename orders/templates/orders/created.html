@@ -53,7 +53,8 @@
                 </div>
 
                 <div class="col s12 m6">
-                    <p>
+                    <p class="m-0 font-weight-bold">SKU: {{ obj.sku_product.sku }}</p>
+                    <p class="mt-2">
                         <a href="{{ obj.sku_product.master.get_absolute_url }}">
                             {{ obj.sku_product.master.descripcion }} /
                             {{ obj.sku_product.color }} /
