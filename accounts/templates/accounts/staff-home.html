@@ -26,6 +26,7 @@
                 <a href="#!" class="collection-item">Usuarios</a>
                 <a href="#!" class="collection-item">Productos</a>
                 <a href="#!" class="collection-item">Categorias</a>
+                <a href="#!" class="collection-item">Contactos</a>
             </div>
         </div>
         <div class="col s12 m9">
@@ -79,6 +80,55 @@
                 </div>
                 <p class="text-right"><a href="{{ orders_staff_list_url }}" class="btn bg-blue right">Ver Todas</a></p>
             </div>
+
+            <div class="col s12 m12">
+                <h3>Contactos</h3>
+                <div class="collection">
+
+                    <a href="#" class="collection-item">
+                        <div class="row">
+                            <div class="col s2">
+                                Nombre
+                            </div>
+                            <div class="col s3">
+                                Email
+                            </div>
+                            <div class="col s4">
+                                Fecha
+                            </div>
+                            <div class="col s3">
+                                Nombre Comercial
+                            </div>
+                        </div>
+
+                    </a>
+
+                    {% for contacto in contactos %}
+                    <a href="{{ contacto.get_absolute_url }}" class="collection-item">
+                        <div class="row">
+                            <div class="col s2">
+                                {{ contacto.name }}
+                            </div>
+                            <div class="col s3">
+                                {{ contacto.email }}
+                            </div>
+                            <div class="col s4">
+                                {{ contacto.timestamp }}
+                            </div>
+                            <div class="col s3">
+                                {{ contacto.nombre_comercial }}
+                            </div>
+                        </div>
+
+                    </a>
+                    {% endfor %}
+                </div>
+
+                <p class="text-right">
+                    <a class="btn bg-blue" href="#">Ver todos</a>
+                </p>
+            </div>
+
 
             <div class="col s12 m12">
                 <h3>Usuarios</h3>
@@ -271,6 +321,7 @@
                     <a class="btn bg-blue" href="{% url 'admin:tallas_talla_add' %}">Crear Talla</a>
                 </p>
             </div>
+
         </div>
 
     </div>

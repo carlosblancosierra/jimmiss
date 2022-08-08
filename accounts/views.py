@@ -16,6 +16,7 @@ from composiciones.models import Composicion
 from divisiones.models import Division
 from series.models import Serie
 from tallas.models import Talla
+from contactos.models import Contacto
 
 from skus.models import SkuMaster, SkuProduct
 from marcas.models import Marca
@@ -57,6 +58,7 @@ def staff_home_page(request):
     divisiones = Division.objects.all()
     series = Serie.objects.all()
     tallas = Talla.objects.all()
+    contactos = Contacto.objects.all()
 
     context = {
         "orders": orders,
@@ -69,6 +71,7 @@ def staff_home_page(request):
         "divisiones": divisiones,
         "series": series,
         "tallas": tallas,
+        "contactos": contactos,
 
     }
     return render(request, "accounts/staff-home.html", context)

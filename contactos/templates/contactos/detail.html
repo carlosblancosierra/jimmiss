@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col s12">
+            <h1 class="text-lblue font-200">Detalles del contacto</h1>
+            <div class="span bg-lblue py-1"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <p>Fecha: {{ contact.timestamp }}</p>
+            <p>Nombre: {{ contact.name }}</p>
+            <p>Correo Eléctronico: {{ contact.email }}</p>
+            <p>Nombre Comercial: {{ contact.nombre_comercial }}</p>
+            <p>Dirección Comercial: {{ contact.direccion_comercial }}</p>
+            <p>Razón Social: {{ contact.razon_social }}</p>
+            <p>Teléfono: {{ contact.telefono }}</p>
+            <p>Mensaje: {{ contact.comments }}</p>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

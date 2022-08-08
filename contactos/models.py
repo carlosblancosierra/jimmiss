@@ -16,3 +16,6 @@ class Contacto(models.Model):
 
     def __str__(self):
         return self.email
+
+    def get_absolute_url(self):
+        return f"/contactos/{self.id}"

@@ -34,6 +34,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('accounts.passwords.urls')),
     path('addresses/', include('addresses.urls')),
+    path('contactos/', include('contactos.urls')),
 
     path('logout', LogoutView.as_view(), name='logout'),
     path('login', login_page, name="login"),
