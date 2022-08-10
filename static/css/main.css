@@ -283,3 +283,32 @@ input[type=number]::-webkit-outer-spin-button {
 .errorlist {
     color:red!important;
 }
+
+
+.btn-cart-quantity {
+    background:rgba(0, 0, 0, 0);
+    color: var(--blue);
+    border: none;
+    width: 100%;
+    height: 28px;
+}
+
+.btn-cart-quantity:hover {
+    background:rgba(0, 0, 0, 0.1);
+    color: var(--blue);
+    border: none;
+    width: 100%;
+    height: 28px;
+}
+.cart-quantity-column {
+    border: solid 1px var(--blue);
+    border-right:0;
+    height:30px;
+    padding:0px!important;
+}
+
+.cart-quantity-column:last-child {
+    border: solid 1px var(--blue);
+    height:30px;
+    padding:0px!important;
+}

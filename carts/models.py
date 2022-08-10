@@ -88,6 +88,33 @@ class CartEntryManager(models.Manager):
         else:
             entry = self.new(request, sku_product=sku_product, quantity=quantity)
 
+    def add_or_remove_quantity(self, request, sku_product_id, quantity):
+
+        if sku_product_id is not None:
+            try:
+                sku_product = SkuProduct.objects.get(sku=sku_product_id)
+
+            except SkuProduct.DoesNotExist:
+                messages.error(request, "Error de producto")
+                return redirect("carts:home")
+        cart, created = Cart.objects.new_or_get(request)
+        cart_entry = self.filter(cart=cart).filter(sku_product=sku_product)
+
+        if cart_entry.count() == 1:
+            entry = cart_entry.first()
+            print(quantity)
+            entry.quantity = entry.quantity + quantity
+            entry.save()
+
+            if entry.quantity <= 0:
+                entry.delete()
+
+    def add_1(self, request, sku_product_id):
+        self.add_or_remove_quantity(request, sku_product_id, 1)
+
+    def remove_1(self, request, sku_product_id):
+        self.add_or_remove_quantity(request, sku_product_id, -1)
+
 
 class CartEntry(models.Model):
     sku_product = models.ForeignKey(SkuProduct, on_delete=models.CASCADE)

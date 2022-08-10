@@ -42,3 +42,21 @@ def delete_entry_page(request):
         CartEntry.objects.new_or_update(request, sku_product, 0)
 
     return redirect("carts:home")
+
+
+def add_1_page(request):
+    if request.POST:
+        data = request.POST.dict()
+        sku_product_sku = data["sku_product_sku"]
+
+        CartEntry.objects.add_1(request, sku_product_sku)
+        return redirect("carts:home")
+
+
+def remove_1_page(request):
+    if request.POST:
+        data = request.POST.dict()
+        sku_product_sku = data["sku_product_sku"]
+
+        CartEntry.objects.remove_1(request, sku_product_sku)
+        return redirect("carts:home")
