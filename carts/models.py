@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.core.exceptions import MultipleObjectsReturned
+from django.db.models.signals import pre_save
 
 from skus.models import SkuProduct
 
@@ -130,3 +131,10 @@ class CartEntry(models.Model):
 
     def __str__(self):
         return "{} Unidad(es) de {}".format(self.quantity, self.sku_product.sku)
+
+
+def pre_save_entry_receiver(sender, instance, *args, **kwargs):
+    instance.total = instance.sku_product.master.costo * instance.quantity
+
+
+pre_save.connect(pre_save_entry_receiver, sender=CartEntry)
