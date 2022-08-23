@@ -16,7 +16,7 @@ def detail_page(request, slug):
     sku_products = SkuProduct.objects.filter(master=sku_master)
 
     cart_id = request.session.get("cart_id", None)
-    entrys = CartEntry.objects.filter(cart__id=cart_id)
+    entrys = CartEntry.objects.filter(cart__id=cart_id, sku_product__master=sku_master)
     cart_btn_text = 'Agregar al carrito'
     if len(entrys) > 0:
         cart_btn_text = 'Actualizar carrito'
