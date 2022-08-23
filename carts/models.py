@@ -132,6 +132,9 @@ class CartEntry(models.Model):
     def __str__(self):
         return "{} Unidad(es) de {}".format(self.quantity, self.sku_product.sku)
 
+    class Meta:
+        ordering = ['sku_product']
+
 
 def pre_save_entry_receiver(sender, instance, *args, **kwargs):
     instance.total = int(instance.sku_product.master.costo) * int(instance.quantity)
