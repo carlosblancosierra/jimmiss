@@ -134,7 +134,7 @@ class CartEntry(models.Model):
 
 
 def pre_save_entry_receiver(sender, instance, *args, **kwargs):
-    instance.total = instance.sku_product.master.costo * instance.quantity
+    instance.total = int(instance.sku_product.master.costo) * int(instance.quantity)
 
 
 pre_save.connect(pre_save_entry_receiver, sender=CartEntry)
