@@ -10,6 +10,7 @@ $(document).ready(function() {
                 items:1
             }
         },
+        mouseDrag: false,
         dotsContainer: '#carousel-custom-dots'
     })
 
