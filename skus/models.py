@@ -64,6 +64,10 @@ class SkuMaster(models.Model):
                                   processors=[ResizeToFill(1200, 1200)],
                                   format='JPEG',
                                   options={'quality': 90})
+    image_6 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
+                                  processors=[ResizeToFill(1200, 1200)],
+                                  format='JPEG',
+                                  options={'quality': 90})
 
     image_alt_text = models.CharField(max_length=120, blank=True)
     meta_description = models.CharField(max_length=120, blank=True)
