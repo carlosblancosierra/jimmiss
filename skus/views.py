@@ -48,9 +48,11 @@ def detail_page(request, slug):
     if sku_master.image_3:
         pictures.append(sku_master.image_3)
     if sku_master.image_4:
-        pictures.append(sku_master.image_3)
+        pictures.append(sku_master.image_4)
     if sku_master.image_5:
-        pictures.append(sku_master.image_3)
+        pictures.append(sku_master.image_5)
+    if sku_master.image_6:
+        pictures.append(sku_master.image_6)
 
     context = {
         "obj": sku_master,
