@@ -15,7 +15,9 @@
                 {% if pictures %}
                 {% for pic in pictures %}
                 <div class="item">
-                    <img src="{{ pic.url }}" alt="" class="">
+                    <a class="modal-trigger" href="#modal{{ forloop.counter }}">
+                        <img src="{{ pic.url }}" alt="" class="">
+                    </a>
                 </div>
                 {% endfor %}
                 {% else %}
@@ -129,6 +131,7 @@
         -webkit-box-shadow:none!important;
         background:none!important;
     }
+
 
 
 </style>
