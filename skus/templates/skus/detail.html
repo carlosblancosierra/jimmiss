@@ -26,23 +26,6 @@
 
             </div>
 
-
-            <div class="owl-carousel owl-theme d-none d-md-block">
-                {% if pictures %}
-                {% for pic in pictures %}
-                <div class="item">
-                    <a class="modal-trigger" href="#modal{{ forloop.counter }}">
-                        <img src="{{ pic.url }}" alt="" class="">
-                    </a>
-                </div>
-                {% endfor %}
-                {% else %}
-                <img src="{% static 'images/placeholder.jpg' %}" alt="" class="responsive-img p-5"/>
-                {% endif %}
-
-            </div>
-
-
             <ul id='carousel-custom-dots' class='owl-dots'>
                 {% for pic in pictures %}
                 <button role="button" class="owl-dot active">
@@ -124,15 +107,24 @@
 
 <style>
     .modal {
-        width:48%!important;
+        width:100%!important;
         max-height:unset!important;
-        top:2%!important;
+        top:20%!important;
         box-shadow:none!important;
         -webkit-box-shadow:none!important;
         background:none!important;
     }
 
-
+    @media (min-width: 800px) {
+        .modal {
+            width:48%!important;
+            max-height:unset!important;
+            top:2%!important;
+            box-shadow:none!important;
+            -webkit-box-shadow:none!important;
+            background:none!important;
+        }
+    }
 
 </style>
 
