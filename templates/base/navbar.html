@@ -40,8 +40,8 @@
     {% if request.user.is_staff %}
     <li><a href="{{ staff_home_url }}">Panel de Staff</a></li>
     {% else %}
-    <li><a href="{{ account_home_url }}">Panel</a></li>
-    <li><a href="{{ home_url }}">Pedidos</a></li>
+    <li><a href="{{ account_home_url }}">Tu cuenta</a></li>
+    <li><a href="{{ account_home_url }}">Pedidos</a></li>
     <li class="divider"></li>
     {% endif %}
     <li><a href="{{ password_change_url }}">Cambiar Contraseña</a></li>
@@ -60,15 +60,15 @@
         <img src="{% static 'images/jimmiss-logo.png' %}" class="responsive-img" alt="JimMiss">
     </div>
     <li><a href="{{ home_url }}" class="white-text">INICIO</a></li>
-    <li><a href="{{ home_url }}" class="white-text">CATÁLOGO</a></li>
+    <li><a href="{{ catalogo_url }}" class="white-text">CATÁLOGO</a></li>
     <li><a href="{{ nosotros_url }}" class="white-text">NOSOTROS</a></li>
     <li><a href="{{ contacto_url }}" class="white-text">CONTACTO</a></li>
     {% if request.user.is_authenticated %}
     {% if request.user.is_staff %}
     <li><a href="{{ staff_home_url }}" class="white-text text-uppercase">Panel de Staff</a></li>
     {% else %}
-    <li><a href="{{ account_home_url }}" class="white-text text-uppercase">Panel</a></li>
-    <li><a href="{{ home_url }}" class="white-text text-uppercase">Pedidos</a></li>
+    <li><a href="{{ account_home_url }}" class="white-text text-uppercase">Tu cuenta</a></li>
+    <li><a href="{{ account_home_url }}" class="white-text text-uppercase">Pedidos</a></li>
     <li class="divider"></li>
     {% endif %}
     <li><a href="{{ password_change_url }}" class="white-text text-uppercase">Cambiar Contraseña</a></li>
@@ -79,6 +79,7 @@
     <li><a href="{{ password_reset_url }}" class="white-text text-uppercase">Restablecer contraseña</a></li>
 
     {% endif %}
+
 
     <li><a href="{{ cart_url }}" class="white-text btn bg-lblue">REALIZAR PEDIDO</a></li>
 
