@@ -7,7 +7,7 @@ from . import models
 class SkuMasterModelAdmin(admin.ModelAdmin):
     list_display = ["sku", "categoria", "descripcion", "marca", "division", "serie", "composicion", "costo", "precio"]
 
-    search_fields = ["sku"]
+    search_fields = ["sku", "descripcion"]
     list_filter = ["marca", "division", "serie", "composicion", ]
 
     # readonly_fields = ['sku']

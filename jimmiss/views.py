@@ -17,6 +17,7 @@ from accounts.forms import UserDetailsForm
 
 from contactos.models import Contacto
 
+
 def home_page(request):
     categories = [
         {
@@ -151,35 +152,8 @@ def home_page(request):
     return render(request, "home.html", context)
 
 
-def division_page(request):
-    products = [
-        {
-            "sku": "909501BLACH",
-            "marca": "JIM",
-            "division": "CABALLERO",
-            "descripcion": "Camiseta Tirantes",
-            "serie": "JIM ACTIVE",
-            "composicion": "Algodón 100%",
-            "color": "BLANCO",
-            "talla": "CHICA",
-            "costo": "81",
-            "precio": "135",
-        }
-    ]
-
-    repeat = range(12)
-
-    context = {
-        "products": products,
-        "repeat": repeat,
-    }
-
-    return render(request, "division.html", context)
-
-
 def nosotros_page(request):
     context = {}
-
     return render(request, "nosotros.html", context)
 
 
@@ -204,12 +178,9 @@ def contacto_page(request):
             razon_social=razon_social,
             telefono=telefono,
             comments=comments
-            )
+        )
 
         new_obj.save()
-
-
-
 
     context = {
         "form": profile_form,

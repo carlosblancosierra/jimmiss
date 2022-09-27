@@ -13,32 +13,6 @@
     </div>
 </div>
 
-<!--<div class="container mt-5">-->
-<!--    <div class="row d-flex">-->
-<!--        <div class="col s12 m4 m-0 valign-wrapper {{ bg }}">-->
-<!--            <div class="w-100">-->
-<!--                <h1 class="text-white w-100 center text-capitalize">{{ division.title }}</h1>-->
-<!--                <h2 class="text-white font-150 center">{{ category.title }}</h2>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="col s12 m8 p-0">-->
-<!--            {% if division.code == "caballero" %}-->
-<!--            <img src="{% static 'images/caballero-banner.jpg' %}" alt="caballero" class="responsive-img h-100">-->
-<!--            {% elif division.code == "dama" %}-->
-<!--            <img src="{% static 'images/dama-banner.jpg' %}" alt="dama" class="responsive-img h-100">-->
-<!--            {% elif division.code == "bebe" %}-->
-<!--            <img src="{% static 'images/bebe-banner.jpg' %}" alt="bebe" class="responsive-img h-100">-->
-<!--            {% elif division.code == "preescolar" %}-->
-<!--            <img src="{% static 'images/preescolar-banner.jpg' %}" alt="preescolar" class="responsive-img h-100">-->
-<!--            {% elif division.code == "ninos" %}-->
-<!--            <img src="{% static 'images/ninos-banner.jpg' %}" alt="niños" class="responsive-img h-100">-->
-<!--            {% elif division.code == "ninas" %}-->
-<!--            <img src="{% static 'images/ninas-banner.jpg' %}" alt="niñas" class="responsive-img h-100">-->
-<!--            {% endif %}-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
 {% if queryset %}
 
 <div class="container mt-4 mb-5">
@@ -55,11 +29,11 @@
                     {% endif %}
 
                     <div class="division-product-info">
-                        <p class="division-product-iva">{{ obj.marca }}</p>
                         <h2 class="division-product-title">{{ obj.descripcion }}</h2>
-                        <p class="division-product-iva">(IVA incluido)</p>
+                        <p class="division-product-sku">SKU: {{ obj.sku }}</p>
                         <p class="division-product-costo">Costo ${{ obj.costo }}</p>
                         <p class="division-product-pvps">PVPS ${{ obj.precio }}</p>
+                        <p class="division-product-iva">(IVA incluido)</p>
                     </div>
                 </div>
             </div>
@@ -67,11 +41,6 @@
         {% endfor %}
     </div>
 
-    <!--    <div class="row mt-2">-->
-    <!--        <div class="col s12">-->
-    <!--            <p class="grey-text">Precio de Venta al Público Sugerida</p>-->
-    <!--        </div>-->
-    <!--    </div>-->
 </div>
 
 <ul class="pagination center">
@@ -97,9 +66,7 @@
 
 <div class="container mh-50">
     <div class="row">
-        <p class="center mt-5 pt-5 font-200">
-            No se encontraron articulos para esta busqueda
-        </p>
+        <p class="center mt-5 pt-5 font-200">No se encontraron artículos para esta búsqueda</p>
         <p class="center"><a href="/" class="btn bg-blue">Volver al Inicio</a></p>
     </div>
 </div>
