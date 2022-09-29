@@ -13,7 +13,7 @@ def nuevo_contacto(contacto_id):
             subject = 'JimMiss - Nueva Formulario de Contacto'
             message = render_to_string('mails/contacto/nuevo.txt', context)
             html_message = render_to_string('mails/contacto/nuevo.html', context)
-            to_mails = ['carlosblancosierra@gmail.com']
+            to_mails = ['jimmiss.sistemas@gmail.com']
             from_mail = 'no-responda@jimmiss.mx'
 
             staff_mails_sent = send_mail(

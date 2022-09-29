@@ -13,7 +13,7 @@ def nueva_orden_mail_staff(order_id):
             subject = 'JimMiss - Nueva Orden'
             message = render_to_string('mails/orders/nueva_staff.txt', context)
             html_message = render_to_string('mails/orders/nueva_staff.html', context)
-            to_mails = ['carlosblancosierra@gmail.com']
+            to_mails = ['jimmiss.sistemas@gmail.com']
             from_mail = 'no-responda@jimmiss.mx'
 
             staff_mails_sent = send_mail(
