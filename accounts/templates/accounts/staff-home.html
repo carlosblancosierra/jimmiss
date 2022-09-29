@@ -22,15 +22,14 @@
     <div class="row">
         <div class="col s12 m3">
             <div class="collection">
-                <a href="#!" class="collection-item">Ordenes</a>
-                <a href="#!" class="collection-item">Usuarios</a>
-                <a href="#!" class="collection-item">Productos</a>
-                <a href="#!" class="collection-item">Categorias</a>
-                <a href="#!" class="collection-item">Contactos</a>
+                <a href="#ordenes" class="collection-item">Ordenes</a>
+                <a href="#contactos" class="collection-item">Contactos</a>
+                <a href="#usuarios" class="collection-item">Usuarios</a>
+                <a href="#productos" class="collection-item">Productos</a>
             </div>
         </div>
         <div class="col s12 m9">
-            <div class="col s12 m12">
+            <div class="col s12 m12" id="ordenes">
                 <h3>Ultimas ordenes</h3>
                 <div class="collection">
 
@@ -81,7 +80,7 @@
                 <p class="text-right"><a href="{{ orders_staff_list_url }}" class="btn bg-blue right">Ver Todas</a></p>
             </div>
 
-            <div class="col s12 m12">
+            <div class="col s12 m12" id="contactos">
                 <h3>Contactos</h3>
                 <div class="collection">
 
@@ -130,7 +129,7 @@
             </div>
 
 
-            <div class="col s12 m12">
+            <div class="col s12 m12" id="usuarios">
                 <h3>Usuarios</h3>
 
                 <div class="collection">
@@ -163,7 +162,7 @@
 
             </div>
 
-            <div class="col s12 m12">
+            <div class="col s12 m12" id="productos">
                 <h3>Productos</h3>
 
                 <div class="collection">
@@ -205,122 +204,122 @@
                 </div>
             </div>
 
-            <div class="col s12 m12">
-                <h3>Categorias</h3>
+            <!--            <div class="col s12 m12" id="categorias">-->
+            <!--                <h3>Categorias</h3>-->
 
-                <div class="collection">
-                    {% for categoria in categorias %}
-                    <a href="{{ order.get_staff_url }}" class="collection-item">
-                        {{ categoria }}
-                    </a>
-                    {% endfor %}
-                </div>
+            <!--                <div class="collection">-->
+            <!--                    {% for categoria in categorias %}-->
+            <!--                    <a href="{{ order.get_staff_url }}" class="collection-item">-->
+            <!--                        {{ categoria }}-->
+            <!--                    </a>-->
+            <!--                    {% endfor %}-->
+            <!--                </div>-->
 
-                <p class="text-right">
-                    <a class="btn bg-blue" href="{% url 'admin:categorias_categoria_add' %}">Crear categoria</a>
-                </p>
-            </div>
+            <!--                <p class="text-right">-->
+            <!--                    <a class="btn bg-blue" href="{% url 'admin:categorias_categoria_add' %}">Crear categoria</a>-->
+            <!--                </p>-->
+            <!--            </div>-->
 
-            <div class="col s12 m12">
-                <h3>Marcas</h3>
+            <!--            <div class="col s12 m12">-->
+            <!--                <h3>Marcas</h3>-->
 
-                <div class="collection">
-                    {% for marca in marcas %}
-                    <a href="{{ order.get_staff_url }}" class="collection-item">
-                        {{ marca }}
-                    </a>
-                    {% endfor %}
-                </div>
-            </div>
-            <p class="text-right"><a class="btn bg-blue" href="{% url 'admin:marcas_marca_add' %}">Crear Marca</a></p>
+            <!--                <div class="collection">-->
+            <!--                    {% for marca in marcas %}-->
+            <!--                    <a href="{{ order.get_staff_url }}" class="collection-item">-->
+            <!--                        {{ marca }}-->
+            <!--                    </a>-->
+            <!--                    {% endfor %}-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <p class="text-right"><a class="btn bg-blue" href="{% url 'admin:marcas_marca_add' %}">Crear Marca</a></p>-->
 
 
-            <div class="col s12 m12">
-                <h3>Colores</h3>
+            <!--            <div class="col s12 m12">-->
+            <!--                <h3>Colores</h3>-->
 
-                <div class="collection">
-                    <a href="{{ order.get_staff_url }}" class="collection-item">
-                        <div class="row">
-                            <div class="col s3">Color</div>
-                            <div class="col s3">Código Hex</div>
-                        </div>
-                    </a>
+            <!--                <div class="collection">-->
+            <!--                    <a href="{{ order.get_staff_url }}" class="collection-item">-->
+            <!--                        <div class="row">-->
+            <!--                            <div class="col s3">Color</div>-->
+            <!--                            <div class="col s3">Código Hex</div>-->
+            <!--                        </div>-->
+            <!--                    </a>-->
 
-                    {% for color in colores %}
+            <!--                    {% for color in colores %}-->
 
-                    <a href="{{ order.get_staff_url }}" class="collection-item">
-                        <div class="row">
-                            <div class="col s3">{{ color }}</div>
-                            <div class="col s3">{{ color.hex }}</div>
-                        </div>
-                    </a>
-                    {% endfor %}
-                </div>
+            <!--                    <a href="{{ order.get_staff_url }}" class="collection-item">-->
+            <!--                        <div class="row">-->
+            <!--                            <div class="col s3">{{ color }}</div>-->
+            <!--                            <div class="col s3">{{ color.hex }}</div>-->
+            <!--                        </div>-->
+            <!--                    </a>-->
+            <!--                    {% endfor %}-->
+            <!--                </div>-->
 
-                <p class="text-right">
-                    <a class="btn bg-blue" href="{% url 'admin:colores_color_add' %}">Crear Color</a>
-                </p>
+            <!--                <p class="text-right">-->
+            <!--                    <a class="btn bg-blue" href="{% url 'admin:colores_color_add' %}">Crear Color</a>-->
+            <!--                </p>-->
 
-            </div>
+            <!--            </div>-->
 
-            <div class="col s12 m12">
-                <h3>Composiciones</h3>
+            <!--            <div class="col s12 m12">-->
+            <!--                <h3>Composiciones</h3>-->
 
-                <div class="collection">
-                    {% for composicion in composiciones %}
-                    <a href="{{ order.get_staff_url }}" class="collection-item">
-                        {{ composicion }}
-                    </a>
-                    {% endfor %}
-                </div>
-                <p class="text-right">
-                    <a class="btn bg-blue" href="{% url 'admin:composiciones_composicion_add' %}">Crear Composicion</a>
-                </p>
+            <!--                <div class="collection">-->
+            <!--                    {% for composicion in composiciones %}-->
+            <!--                    <a href="{{ order.get_staff_url }}" class="collection-item">-->
+            <!--                        {{ composicion }}-->
+            <!--                    </a>-->
+            <!--                    {% endfor %}-->
+            <!--                </div>-->
+            <!--                <p class="text-right">-->
+            <!--                    <a class="btn bg-blue" href="{% url 'admin:composiciones_composicion_add' %}">Crear Composicion</a>-->
+            <!--                </p>-->
 
-            </div>
+            <!--            </div>-->
 
-            <div class="col s12 m12">
-                <h3>Divisiones</h3>
+            <!--            <div class="col s12 m12">-->
+            <!--                <h3>Divisiones</h3>-->
 
-                <div class="collection">
-                    {% for division in divisiones %}
-                    <a href="{{ order.get_staff_url }}" class="collection-item">
-                        {{ division }}
-                    </a>
-                    {% endfor %}
-                </div>
-            </div>
+            <!--                <div class="collection">-->
+            <!--                    {% for division in divisiones %}-->
+            <!--                    <a href="{{ order.get_staff_url }}" class="collection-item">-->
+            <!--                        {{ division }}-->
+            <!--                    </a>-->
+            <!--                    {% endfor %}-->
+            <!--                </div>-->
+            <!--            </div>-->
 
-            <div class="col s12 m12">
-                <h3>Series</h3>
+            <!--            <div class="col s12 m12">-->
+            <!--                <h3>Series</h3>-->
 
-                <div class="collection">
-                    {% for serie in series %}
-                    <a href="{{ order.get_staff_url }}" class="collection-item">
-                        {{ serie }}
-                    </a>
-                    {% endfor %}
-                </div>
-                <p class="text-right">
-                    <a class="btn bg-blue" href="{% url 'admin:series_serie_add' %}">Crear Serie</a>
-                </p>
+            <!--                <div class="collection">-->
+            <!--                    {% for serie in series %}-->
+            <!--                    <a href="{{ order.get_staff_url }}" class="collection-item">-->
+            <!--                        {{ serie }}-->
+            <!--                    </a>-->
+            <!--                    {% endfor %}-->
+            <!--                </div>-->
+            <!--                <p class="text-right">-->
+            <!--                    <a class="btn bg-blue" href="{% url 'admin:series_serie_add' %}">Crear Serie</a>-->
+            <!--                </p>-->
 
-            </div>
+            <!--            </div>-->
 
-            <div class="col s12 m12">
-                <h3>Tallas</h3>
+            <!--            <div class="col s12 m12">-->
+            <!--                <h3>Tallas</h3>-->
 
-                <div class="collection">
-                    {% for talla in tallas %}
-                    <a href="{{ order.get_staff_url }}" class="collection-item">
-                        {{ talla }}
-                    </a>
-                    {% endfor %}
-                </div>
-                <p class="text-right">
-                    <a class="btn bg-blue" href="{% url 'admin:tallas_talla_add' %}">Crear Talla</a>
-                </p>
-            </div>
+            <!--                <div class="collection">-->
+            <!--                    {% for talla in tallas %}-->
+            <!--                    <a href="{{ order.get_staff_url }}" class="collection-item">-->
+            <!--                        {{ talla }}-->
+            <!--                    </a>-->
+            <!--                    {% endfor %}-->
+            <!--                </div>-->
+            <!--                <p class="text-right">-->
+            <!--                    <a class="btn bg-blue" href="{% url 'admin:tallas_talla_add' %}">Crear Talla</a>-->
+            <!--                </p>-->
+            <!--            </div>-->
 
         </div>
 
