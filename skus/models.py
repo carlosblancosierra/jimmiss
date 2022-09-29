@@ -41,31 +41,31 @@ class SkuMaster(models.Model):
                                   on_delete=models.SET_NULL,
                                   related_name='categoria_skuproduct_set')
     image = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                processors=[ResizeToFill(1200, 1200)],
+                                processors=[ResizeToFill(1500, 1500)],
                                 format='JPEG',
                                 options={'quality': 95})
     image_small = ImageSpecField(source='image',
-                                 processors=[ResizeToFill(1200, 1200)],
+                                 processors=[ResizeToFill(1500, 1500)],
                                  format='JPEG',
                                  options={'quality': 95})
     image_2 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(1200, 1200)],
+                                  processors=[ResizeToFill(1500, 1500)],
                                   format='JPEG',
                                   options={'quality': 95})
     image_3 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(1200, 1200)],
+                                  processors=[ResizeToFill(1500, 1500)],
                                   format='JPEG',
                                   options={'quality': 95})
     image_4 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(1200, 1200)],
+                                  processors=[ResizeToFill(1500, 1500)],
                                   format='JPEG',
                                   options={'quality': 95})
     image_5 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(1200, 1200)],
+                                  processors=[ResizeToFill(1500, 1500)],
                                   format='JPEG',
                                   options={'quality': 95})
     image_6 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(1200, 1200)],
+                                  processors=[ResizeToFill(1500, 1500)],
                                   format='JPEG',
                                   options={'quality': 95})
 
