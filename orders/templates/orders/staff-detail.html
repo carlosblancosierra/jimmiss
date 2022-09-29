@@ -38,7 +38,9 @@
                         </select>
                         <label>Cambiar estatus</label>
                     </div>
-                    <p class="text-right"><button type="submit" class="btn bg-blue">Actualizar</button></p>
+                    <p class="text-right">
+                        <button type="submit" class="btn bg-blue">Actualizar</button>
+                    </p>
                 </form>
             </div>
         </div>
@@ -60,6 +62,7 @@
                 </div>
 
                 <div class="col s12 m6">
+                    <p>{{ obj }}</p>
                     <p>
                         <a href="{{ obj.sku_product.master.get_absolute_url }}">
                             {{ obj.sku_product.master.descripcion }} /
@@ -71,7 +74,9 @@
 
                 <div class="col s12 m3">
                     <p class="font-weight-bold text-right w-100 font-125">${{ obj.sku_product.master.costo }} </p>
-                    <p class="right my-0">Cantidad: {{ obj.quantity }} <br>
+                    <p class="font-weight-bold text-right w-100 font-125">${{ obj.total }} </p>
+
+                    <!--                    <p class="right my-0">Cantidad: {{ obj.quantity }} <br>-->
                     </p>
                 </div>
 

@@ -5,7 +5,7 @@ from skus.models import SkuMaster, SkuProduct
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.text import slugify
-
+from django.contrib import messages
 from marcas.models import Marca
 from divisiones.models import Division
 from series.models import Serie
@@ -16,6 +16,7 @@ from categorias.models import Categoria
 from accounts.forms import UserDetailsForm
 
 from contactos.models import Contacto
+from .emails import nuevo_contacto
 
 
 def home_page(request):
@@ -181,6 +182,9 @@ def contacto_page(request):
         )
 
         new_obj.save()
+
+        nuevo_contacto(new_obj.id)
+        messages.success(request, 'Mensaje recibido con exito, le contactaremos pronto')
 
     context = {
         "form": profile_form,
