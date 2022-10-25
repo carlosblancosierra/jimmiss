@@ -41,33 +41,33 @@ class SkuMaster(models.Model):
                                   on_delete=models.SET_NULL,
                                   related_name='categoria_skuproduct_set')
     image = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                processors=[ResizeToFill(1500, 1500)],
+                                processors=[ResizeToFill(4000, 4000)],
                                 format='JPEG',
-                                options={'quality': 95})
+                                options={'quality': 98})
     image_small = ImageSpecField(source='image',
-                                 processors=[ResizeToFill(1500, 1500)],
+                                 processors=[ResizeToFill(1200, 1200)],
                                  format='JPEG',
-                                 options={'quality': 95})
+                                 options={'quality': 90})
     image_2 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(1500, 1500)],
+                                  processors=[ResizeToFill(4000, 4000)],
                                   format='JPEG',
-                                  options={'quality': 95})
+                                  options={'quality': 98})
     image_3 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(1500, 1500)],
+                                  processors=[ResizeToFill(4000, 4000)],
                                   format='JPEG',
-                                  options={'quality': 95})
+                                  options={'quality': 98})
     image_4 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(1500, 1500)],
+                                  processors=[ResizeToFill(4000, 4000)],
                                   format='JPEG',
-                                  options={'quality': 95})
+                                  options={'quality': 98})
     image_5 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(1500, 1500)],
+                                  processors=[ResizeToFill(4000, 4000)],
                                   format='JPEG',
-                                  options={'quality': 95})
+                                  options={'quality': 98})
     image_6 = ProcessedImageField(upload_to=upload_location, null=True, blank=True,
-                                  processors=[ResizeToFill(1500, 1500)],
+                                  processors=[ResizeToFill(4000, 4000)],
                                   format='JPEG',
-                                  options={'quality': 95})
+                                  options={'quality': 98})
 
     image_alt_text = models.CharField(max_length=120, blank=True)
     meta_description = models.CharField(max_length=120, blank=True)
