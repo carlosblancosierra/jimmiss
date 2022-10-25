@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import Cart, CartEntry
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-
+@login_required
 def home_page(request):
     cart_id = request.session.get("cart_id", None)
     entries = CartEntry.objects.filter(cart__id=cart_id)
@@ -23,7 +24,7 @@ def home_page(request):
 
     return render(request, "carts/home.html", context)
 
-
+@login_required
 def agregar_page(request):
     form = request.POST
     if form:
@@ -34,7 +35,7 @@ def agregar_page(request):
 
     return redirect("carts:home")
 
-
+@login_required
 def delete_entry_page(request):
     form = request.POST
     if form:
@@ -43,7 +44,7 @@ def delete_entry_page(request):
 
     return redirect("carts:home")
 
-
+@login_required
 def add_1_page(request):
     if request.POST:
         data = request.POST.dict()
@@ -52,7 +53,7 @@ def add_1_page(request):
         CartEntry.objects.add_1(request, sku_product_sku)
         return redirect("carts:home")
 
-
+@login_required
 def remove_1_page(request):
     if request.POST:
         data = request.POST.dict()

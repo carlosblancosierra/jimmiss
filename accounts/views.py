@@ -17,6 +17,7 @@ from divisiones.models import Division
 from series.models import Serie
 from tallas.models import Talla
 from contactos.models import Contacto
+from django.contrib.auth.decorators import login_required
 
 from skus.models import SkuMaster, SkuProduct
 from marcas.models import Marca
@@ -77,6 +78,7 @@ def staff_home_page(request):
     return render(request, "accounts/staff-home.html", context)
 
 
+@login_required
 def home_page(request):
     user = request.user
 

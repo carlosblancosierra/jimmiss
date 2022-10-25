@@ -48,6 +48,7 @@
                 </ul>
             </div>
             <div class="col l3 s12">
+                {% if request.user.is_authenticated %}
                 <ul>
                     <li>
                         <a class="grey-text text-lighten-3"
@@ -73,6 +74,7 @@
                         <a class="grey-text text-lighten-3"
                            href="/skus/bebe?cat=ropa_interior">Bebe</a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
 

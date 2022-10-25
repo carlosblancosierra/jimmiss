@@ -5,12 +5,15 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponseForbidden
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 from .models import Order, STATUS_CHOICES
 from .emails import nueva_orden_mail_staff, nueva_orden_mail_client
 
 
 # Create your views here.
+
+@login_required
 def address_page(request):
     if not request.user.is_authenticated:
         return redirect('/login?next=/orders/address')
@@ -85,7 +88,7 @@ def address_page(request):
 
     return render(request, "orders/address.html", context)
 
-
+@login_required
 def confirm_page(request):
     cart_id = request.session.get("cart_id", None)
     address_id = request.session.get("address_id", None)
@@ -125,7 +128,7 @@ def confirm_page(request):
 
     return render(request, "orders/confirm.html", context)
 
-
+@login_required
 def created_page(request):
     order = None
     order_id = request.session.get("order_id")
@@ -181,7 +184,7 @@ def staff_detail_page(request, order_id):
 
     return render(request, "orders/staff-detail.html", context)
 
-
+@login_required
 def detail_page(request, order_id):
     order = None
     order_qs = Order.objects.filter(order_id=order_id)
@@ -200,7 +203,7 @@ def detail_page(request, order_id):
 
     return render(request, "orders/detail.html", context)
 
-
+@login_required
 def list_page(request):
     order_qs = Order.objects.filter(user=request.user)
 

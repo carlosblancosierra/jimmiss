@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 from carts.models import CartEntry
 from divisiones.models import Division
@@ -10,6 +11,7 @@ import unidecode
 
 
 # Create your views here.
+@login_required
 def detail_page(request, slug):
     sku_master = get_object_or_404(SkuMaster, slug=slug)
 
@@ -64,6 +66,7 @@ def detail_page(request, slug):
     return render(request, "skus/detail.html", context)
 
 
+@login_required
 def list_page(request, division_code=None):
     masters = SkuMaster.objects.all()
     division = None
@@ -99,6 +102,7 @@ def list_page(request, division_code=None):
     return render(request, "skus/list.html", context)
 
 
+@login_required
 def all_page(request):
     masters = SkuMaster.objects.all()
     paginator = Paginator(masters, 20)  # Show 25 contacts per page.
