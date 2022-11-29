@@ -32,7 +32,7 @@ class Order(models.Model):
             return self.id
 
     class Meta:
-        ordering = ['-order_id']
+        ordering = ['-timestamp']
 
     def subtotal(self):
         subtotal = 0
