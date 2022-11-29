@@ -7,120 +7,146 @@
 {% block content %}
 
 <div class="container my-5 d-none d-md-block">
-    <div class="row">
-        <div class="col s4">
-            <h1 class="text-lblue font-150 center">1 - Carrito</h1>
-        </div>
-        <div class="col s4">
-            <h1 class="text-lblue font-150 center">2 - Dirección de entrega</h1>
-        </div>
-        <div class="col s4">
-            <h1 class="font-150 center">3 - Completar orden</h1>
-        </div>
-        <div class="col s12">
-            <div class="progress bg-lblue2">
-                <div class="determinate bg-lblue" style="width: 66%"></div>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col s4">
+      <h1 class="text-lblue font-150 center">1 - Carrito</h1>
     </div>
+    <div class="col s4">
+      <h1 class="text-lblue font-150 center">2 - Dirección de entrega</h1>
+    </div>
+    <div class="col s4">
+      <h1 class="font-150 center">3 - Completar orden</h1>
+    </div>
+    <div class="col s12">
+      <div class="progress bg-lblue2">
+        <div class="determinate bg-lblue" style="width: 66%"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="container my-5 d-md-none">
-    <div class="row">
-        <div class="col s12">
-            <h1 class="text-lblue font-200 center">Dirección de Entrega</h1>
-            <div class="col s12">
-                <div class="progress bg-lblue2">
-                    <div class="determinate bg-lblue" style="width: 66%"></div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col s12">
+      <h1 class="text-lblue font-200 center">Dirección de Entrega</h1>
+      <div class="col s12">
+        <div class="progress bg-lblue2">
+          <div class="determinate bg-lblue" style="width: 66%"></div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="container">
 
-    <div class="row">
+  <div class="row">
 
-        <div class="col s12 m6 px-4">
+    <div class="col s12 m6 px-4">
+      <form method="POST" action=""> {% csrf_token %}
+
+        <h4 class="text-lblue mt-0">
+          {% if address %} Actualizar Dirección {% else %} Dirección nueva {% endif %}
+        </h4>
+
+        <div class="input-field">
+          <input id="nombre_completo" type="text" class="" name="nombre_completo"
+                 value="{{ address.nombre_completo }}">
+          <label for="nombre_completo">Nombre Completo</label>
+        </div>
+
+        <div class="input-field">
+          <input id="calle_numero" type="text" class="" name="calle_numero"
+                 value="{{ address.calle_numero }}">
+          <label for="calle_numero">Calle, número ext e int</label>
+        </div>
+
+        <div class="input-field">
+          <input id="telefono" type="text" class="" name="telefono"
+                 value="{{ address.telefono }}">
+          <label for="telefono">Número de teléfono</label>
+        </div>
+
+        <div class="input-field">
+          <input id="codigo_postal" type="text" class="" name="codigo_postal"
+                 value="{{ address.codigo_postal }}">
+          <label for="codigo_postal">Código postal</label>
+        </div>
+
+        <div class="input-field">
+          <input id="estado" type="text" class="" name="estado"
+                 value="{{ address.estado }}">
+          <label for="estado">Estado/Provincia/Región</label>
+        </div>
+
+        <div class="input-field">
+          <input id="ciudad" type="text" class="" name="ciudad"
+                 value="{{ address.ciudad }}">
+          <label for="ciudad">Ciudad</label>
+        </div>
+
+        <div class="input-field">
+          <input id="colonia" type="text" class="" name="colonia"
+                 value="{{ address.colonia }}">
+          <label for="colonia">Colonia</label>
+        </div>
+
+        <div class="input-field">
+          <input id="pais" type="text" class="" value="México" name="pais"
+                 value="{{ address.pais }}">
+          <label for="pais">País</label>
+        </div>
+
+        <input type="hidden" value="{{ address.id }}" name="update_address_id">
+        <button type="submit" class="waves-effect waves-light btn bg-blue w-100 f text-capitalize">
+          {% if address %} Actualizar Dirección {% else %} Agregar dirección {% endif %}
+        </button>
+      </form>
+
+    </div>
+
+    {% if addresses %}
+    <div class="col s12 m6 px-4">
+      <h4 class="text-lblue">Direcciónes guardadas</h4>
+      <div class="row">
+        {% for address in addresses %}
+        <div class="col s12 m6">
+          <div class="card p-3">
             <form method="POST" action=""> {% csrf_token %}
-
-                <h4 class="text-lblue mt-0">Dirección nueva</h4>
-
-                <div class="input-field">
-                    <input id="nombre_completo" type="text" class="" name="nombre_completo">
-                    <label for="nombre_completo">Nombre Completo</label>
-                </div>
-
-                <div class="input-field">
-                    <input id="calle_numero" type="text" class="" name="calle_numero">
-                    <label for="calle_numero">Calle, número ext e int</label>
-                </div>
-
-                <div class="input-field">
-                    <input id="telefono" type="text" class="" name="telefono">
-                    <label for="telefono">Número de teléfono</label>
-                </div>
-
-                <div class="input-field">
-                    <input id="codigo_postal" type="text" class="" name="codigo_postal">
-                    <label for="codigo_postal">Código postal</label>
-                </div>
-
-                <div class="input-field">
-                    <input id="estado" type="text" class="" name="estado">
-                    <label for="estado">Estado/Provincia/Región</label>
-                </div>
-
-                <div class="input-field">
-                    <input id="ciudad" type="text" class="" name="ciudad">
-                    <label for="ciudad">Ciudad</label>
-                </div>
-
-                <div class="input-field">
-                    <input id="colonia" type="text" class="" name="colonia">
-                    <label for="colonia">Colonia</label>
-                </div>
-
-                <div class="input-field">
-                    <input id="pais" type="text" class="" value="México" name="pais">
-                    <label for="pais">País</label>
-                </div>
-
-                <button type="submit" class="waves-effect waves-light btn bg-blue w-100 f text-capitalize">
-                    Crear dirección
+              <div class="">
+                <p class="m-0 p-0 font-150"><strong>{{ address.nombre_completo }}</strong></p>
+                <p class="m-0 p-0"><strong>Teléfono:</strong> {{ address.telefono }}</p>
+                <p class="m-0 p-0"><strong>Calle:</strong> {{ address.calle_numero }}</p>
+                <p class="m-0 p-0"><strong>Colonia:</strong> {{ address.colonia }}</p>
+                <p class="m-0 p-0"><strong>Ciudad:</strong> {{ address.ciudad }}</p>
+                <p class="m-0 p-0"><strong>Estado:</strong> {{ address.estado }}</p>
+                <p class="m-0 p-0"><strong>País:</strong> {{ address.pais }}</p>
+                <p class="m-0 p-0"><strong>Código Postal:</strong> {{ address.codigo_postal }}</p>
+                <input type="hidden" name="reuse_address_id" value="{{ address.id }}">
+                <button type="submit"
+                        class="waves-effect waves-light btn bg-blue w-100 f text-capitalize mt-3">
+                  Usar dirección
                 </button>
+              </div>
             </form>
 
-        </div>
-        <div class="col s12 m6 px-4">
-            <h4 class="text-lblue">Direcciónes guardadas</h4>
-            <div class="row">
-                {% for address in addresses %}
-                <form method="POST" action=""> {% csrf_token %}
-                    <div class="col s12 m6">
-                        <div class="card p-3">
-                            <p class="m-0 p-0 font-150"><strong>{{ address.nombre_completo }}</strong></p>
-                            <p class="m-0 p-0"><strong>Teléfono:</strong> {{ address.telefono }}</p>
-                            <p class="m-0 p-0"><strong>Calle:</strong> {{ address.calle_numero }}</p>
-                            <p class="m-0 p-0"><strong>Colonia:</strong> {{ address.colonia }}</p>
-                            <p class="m-0 p-0"><strong>Ciudad:</strong> {{ address.ciudad }}</p>
-                            <p class="m-0 p-0"><strong>Estado:</strong> {{ address.estado }}</p>
-                            <p class="m-0 p-0"><strong>País:</strong> {{ address.pais }}</p>
-                            <p class="m-0 p-0"><strong>Código Postal:</strong> {{ address.codigo_postal }}</p>
-                            <input type="hidden" name="address_id" value="{{ address.id }}">
-                            <button type="submit"
-                                    class="waves-effect waves-light btn bg-blue w-100 f text-capitalize mt-3">
-                                Usar dirección
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                {% endfor %}
-            </div>
+            <form method="POST" action="" class="mt-3">{% csrf_token %}
+              <input type="hidden" name="delete_address_id" value="{{ address.id }}">
+              <p class="">
+                <button type="submit" class="red-link w-100">
+                  Borrar dirección
+                </button>
+              </p>
 
+            </form>
+          </div>
         </div>
+        {% endfor %}
+      </div>
+
     </div>
+    {% endif %}
+  </div>
 </div>
 
 <!-- Entries -->

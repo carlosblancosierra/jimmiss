@@ -19,6 +19,7 @@ def address_page(request):
         return redirect('/login?next=/orders/address')
 
     cart_id = request.session.get("cart_id", None)
+    address_id = request.session.get("address_id", None)
     entries = CartEntry.objects.filter(cart__id=cart_id)
 
     if not entries.exists():
@@ -32,18 +33,58 @@ def address_page(request):
         total += subtotal
 
     addresses = Address.objects.filter(user=user)
+    address_qs = addresses.filter(id=address_id)
+    address_to_update = None
+
+    if len(address_qs) == 1:
+        address_to_update = address_qs.first()
+        addresses = addresses.exclude(id=address_id)
 
     context = {
         "addresses": addresses,
-        "entries": entries,
-        "total": total,
+        "address": address_to_update,
     }
 
     form = request.POST
     if form:
+        update_address_id = form.get('update_address_id', False)
+        reuse_address_id = form.get('reuse_address_id', False)
+        delete_address_id = form.get('delete_address_id', False)
 
-        if form.get('address_id', False):
-            request.session['address_id'] = form['address_id']
+        if update_address_id:
+            address_qs = Address.objects.filter(id=address_id)
+            nombre_completo = form['nombre_completo']
+            calle_numero = form['calle_numero']
+            codigo_postal = form['codigo_postal']
+            estado = form['estado']
+            ciudad = form['ciudad']
+            colonia = form['colonia']
+            telefono = form['telefono']
+            pais = form['pais']
+            address_qs_unique = len(address_qs) == 1
+
+            all_variables = [address_qs_unique, nombre_completo, calle_numero, codigo_postal, estado, ciudad, colonia,
+                             telefono,
+                             pais]
+
+            if all(all_variables):
+                address_qs.update(
+                    nombre_completo=nombre_completo,
+                    calle_numero=calle_numero,
+                    codigo_postal=codigo_postal,
+                    estado=estado,
+                    ciudad=ciudad,
+                    colonia=colonia,
+                    telefono=telefono,
+                    pais=pais
+                )
+
+            request.session['address_id'] = form['update_address_id']
+        elif reuse_address_id:
+            request.session['address_id'] = reuse_address_id
+        elif delete_address_id:
+            Address.objects.filter(id=delete_address_id).delete()
+            return redirect('orders:address')
         else:
             nombre_completo = form['nombre_completo']
             calle_numero = form['calle_numero']
@@ -54,7 +95,7 @@ def address_page(request):
             telefono = form['telefono']
             pais = form['pais']
 
-            same_address_qs = addresses.filter(
+            address = Address(
                 nombre_completo=nombre_completo,
                 calle_numero=calle_numero,
                 codigo_postal=codigo_postal,
@@ -65,28 +106,14 @@ def address_page(request):
                 pais=pais,
                 user=request.user
             )
-
-            if len(same_address_qs) == 1:
-                address = same_address_qs.first()
-            else:
-                address = Address(
-                    nombre_completo=nombre_completo,
-                    calle_numero=calle_numero,
-                    codigo_postal=codigo_postal,
-                    estado=estado,
-                    ciudad=ciudad,
-                    colonia=colonia,
-                    telefono=telefono,
-                    pais=pais,
-                    user=request.user
-                )
-                address.save()
+            address.save()
 
             request.session['address_id'] = address.id
 
         return redirect('orders:confirm')
 
     return render(request, "orders/address.html", context)
+
 
 @login_required
 def confirm_page(request):
@@ -127,6 +154,7 @@ def confirm_page(request):
     }
 
     return render(request, "orders/confirm.html", context)
+
 
 @login_required
 def created_page(request):
@@ -184,6 +212,7 @@ def staff_detail_page(request, order_id):
 
     return render(request, "orders/staff-detail.html", context)
 
+
 @login_required
 def detail_page(request, order_id):
     order = None
@@ -202,6 +231,7 @@ def detail_page(request, order_id):
     }
 
     return render(request, "orders/detail.html", context)
+
 
 @login_required
 def list_page(request):

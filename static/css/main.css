@@ -173,6 +173,10 @@ h1, h2{
     color:var(--lblue2);
 }
 
+.red-link {
+    text-decoration: underline;
+    color: var(--red);
+}
 
 .btn-home {
     border-radius:30px!important;
