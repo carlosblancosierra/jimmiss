@@ -15,6 +15,7 @@ class Address(models.Model):
     telefono = models.CharField(max_length=120, null=True, blank=True)
     pais = models.CharField(max_length=120, default="Mexico")
     user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+    active = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.nombre_completo + " " + self.calle_numero)

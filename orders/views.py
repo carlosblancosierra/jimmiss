@@ -32,7 +32,7 @@ def address_page(request):
         subtotal = entry.sku_product.master.costo * entry.quantity
         total += subtotal
 
-    addresses = Address.objects.filter(user=user)
+    addresses = Address.objects.filter(user=user, active=True)
     address_qs = addresses.filter(id=address_id)
     address_to_update = None
 
@@ -83,7 +83,7 @@ def address_page(request):
         elif reuse_address_id:
             request.session['address_id'] = reuse_address_id
         elif delete_address_id:
-            Address.objects.filter(id=delete_address_id).delete()
+            Address.objects.filter(id=delete_address_id).update(active=False)
             return redirect('orders:address')
         else:
             nombre_completo = form['nombre_completo']
