@@ -139,10 +139,13 @@ def confirm_page(request):
         order = Order(user=request.user, direccion_entrega=address)
         order.save()
         request.session['order_id'] = order.id
+
         for entry in entries:
             order.cart_entries.add(entry)
 
         request.session['cart_id'] = None
+        request.session['address_id'] = None
+
         nueva_orden_mail_staff(order)
         nueva_orden_mail_client(order)
         return redirect('orders:created')

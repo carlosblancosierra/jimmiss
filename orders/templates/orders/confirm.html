@@ -9,124 +9,122 @@
 {% url 'orders:address' as order_address_url %}
 
 <div class="container my-5 d-none d-md-block">
-    <div class="row">
-        <div class="col s4">
-            <h1 class="text-lblue font-150 center">1 - Carrito</h1>
-        </div>
-        <div class="col s4">
-            <h1 class="text-lblue font-150 center">2 - Dirección de entrega</h1>
-        </div>
-        <div class="col s4">
-            <h1 class="text-lblue font-150 center">3 - Completar orden</h1>
-        </div>
-        <div class="col s12">
-            <div class="progress bg-lblue2">
-                <div class="determinate bg-lblue" style="width: 100%"></div>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col s4">
+      <h1 class="text-lblue font-150 center">1 - Carrito</h1>
     </div>
+    <div class="col s4">
+      <h1 class="text-lblue font-150 center">2 - Dirección de entrega</h1>
+    </div>
+    <div class="col s4">
+      <h1 class="text-lblue font-150 center">3 - Completar orden</h1>
+    </div>
+    <div class="col s12">
+      <div class="progress bg-lblue2">
+        <div class="determinate bg-lblue" style="width: 100%"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="container my-5 d-md-none">
-    <div class="row">
-        <div class="col s12">
-            <h1 class="text-lblue font-200 center">Confirmar orden</h1>
-            <div class="col s12">
-                <div class="progress bg-lblue2">
-                    <div class="determinate bg-lblue" style="width: 100%"></div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col s12">
+      <h1 class="text-lblue font-200 center">Confirmar orden</h1>
+      <div class="col s12">
+        <div class="progress bg-lblue2">
+          <div class="determinate bg-lblue" style="width: 100%"></div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="container">
 
-    <div class="row">
+  <div class="row">
 
-        <div class="col s12 m6 px-4">
-            <h4 class="text-lblue">Pedido</h4>
+    <div class="col s12 m12 px-md-4">
+      <h4 class="text-lblue">Pedido</h4>
 
-            {% for obj in entries %}
-            <div class="row card py-2 d-flex valign-wrapper cart-card">
+      <table>
+        <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Sku</th>
+          <th>Precio U</th>
+          <th class="d-none d-md-table-cell">Descripción</th>
+          <th>Cantidad</th>
+        </tr>
+        </thead>
 
-                <div class="col s12 m2">
-                    {% if obj.sku_product.master.image %}
-                    <img src="{{ obj.sku_product.master.image.url }}" alt="" class="responsive-img"/>
-                    {% else %}
-                    <img src="{% static 'images/placeholder.jpg' %}" alt="" class="responsive-img"/>
-                    {% endif %}
-                </div>
+        <tbody>
+        {% for obj in entries %}
+        <tr>
+          <td>
+            {% if obj.sku_product.master.image %}
+            <img src="{{ obj.sku_product.master.image.url }}" width="50px"/>
+            {% else %}
+            <img src="{% static 'images/placeholder.jpg' %}" width="50px"/>
+            {% endif %}
+          </td>
+          <td>
+            <a href="{{ obj.sku_product.master.get_absolute_url }}" class="font-weight-bold">
+              {{ obj.sku_product.sku }}
+            </a>
+          </td>
+          <td>${{ obj.sku_product.master.costo }}</td>
+          <td class="d-none d-md-table-cell">
+            {{ obj.sku_product.master.descripcion }} /
+            {{ obj.sku_product.color }} /
+            {{ obj.sku_product.talla }}
+          </td>
+          <td>
+            {{ obj.quantity }}
+          </td>
+        </tr>
+        {% endfor %}
 
-                <div class="col s12 m6">
-                    <p class="m-0 font-weight-bold">SKU: {{ obj.sku_product.sku }}</p>
-                    <p class="mt-2">
-                        <a href="{{ obj.sku_product.master.get_absolute_url }}">
-                            {{ obj.sku_product.master.descripcion }} /
-                            {{ obj.sku_product.color }} /
-                            {{ obj.sku_product.talla }}
-                        </a>
-                    </p>
-                </div>
+        </tbody>
+      </table>
 
-                <div class="col s12 m3">
-                    <p class="font-weight-bold text-right w-100 font-125">${{ obj.sku_product.master.costo }} </p>
-                    <p class="right my-0">Cantidad: {{ obj.quantity }} <br>
-                        <a class="cart-qty-link" href="{{ order_address_url }}">Modificar</a>
-                    </p>
-                </div>
-
-                <div class="col s12 m1">
-                </div>
-
-            </div>
-
-            {% endfor %}
-        </div>
-        <div class="col s12 m6 px-4">
-            <h4 class="text-lblue">Dirección de envío</h4>
-
-            <div class="card cart-card p-3">
-                <p class="m-0 p-0">{{ address.nombre_completo }}, {{ address.telefono }}</p>
-                <p class="m-0 p-0">
-                    {{ address.calle_numero }},
-                    {{ address.estado }},
-                    {{ address.ciudad }},
-                    {{ address.colonia }},
-                    {{ address.pais }},
-                    {{ address.codigo_postal }}.
-                </p>
-                <a class="cart-qty-link" href="{{ order_address_url }}">Modificar</a>
-
-            </div>
-
-            <h4 class="text-lblue mt-4">Resumen</h4>
-
-            <div class="card cart-card px-5">
-                <div class="row">
-                    <div class="col s6">
-                        <p class="font-150 mb-2">Subtotal:</p>
-                    </div>
-                    <div class="col s6">
-                        <p class="text-right font-150 mb-2">${{ total }}</p>
-                    </div>
-                </div>
-                <div class="row font-weight-bold">
-                    <div class="col s6">
-                        <p class="font-150 mt-2">Total:</p>
-                    </div>
-                    <div class="col s6">
-                        <p class="text-right font-150 mt-2">${{ total }}</p>
-                    </div>
-                </div>
-            </div>
-            <form method="POST"> {% csrf_token %}
-                <button class="waves-effect waves-light btn-large bg-blue w-100 text-capitalize font-150">
-                    Confirmar Pedido
-                </button>
-            </form>
-        </div>
     </div>
+    <div class="col s12 m12 px-4">
+      <h4 class="text-lblue">Dirección de envío</h4>
+
+      <div class="card cart-card p-3">
+        <p class="m-0 p-0">{{ address.nombre_completo }}, {{ address.telefono }}</p>
+        <p class="m-0 p-0">
+          {{ address.calle_numero }},
+          {{ address.estado }},
+          {{ address.ciudad }},
+          {{ address.colonia }},
+          {{ address.pais }},
+          {{ address.codigo_postal }}.
+        </p>
+        <a class="cart-qty-link" href="{{ order_address_url }}">Modificar</a>
+
+      </div>
+
+      <h4 class="text-lblue mt-4">Resumen</h4>
+
+      <div class="card cart-card px-5">
+        <div class="row font-weight-bold p-0">
+          <div class="col s6">
+            <p class="font-150 mt-2">Total:</p>
+          </div>
+          <div class="col s6">
+            <p class="text-right font-150 mt-2">${{ total }}</p>
+          </div>
+        </div>
+      </div>
+      <form method="POST"> {% csrf_token %}
+        <button class="waves-effect waves-light btn-large bg-blue w-100 text-capitalize font-150">
+          Confirmar Pedido
+        </button>
+      </form>
+    </div>
+  </div>
 </div>
 
 {% endblock %}
